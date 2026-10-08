@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portafolio de Diego Granados, diseñador UX/UI y diseño digital en El Salvador.">
+<title>Diego Granados — Portafolio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+html{scroll-behavior:smooth}
+a{color:inherit}a:hover{color:inherit}
+.dg-btn{transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 200ms ease,color 200ms ease}
+.dg-btn:active{transform:scale(0.97)}
+.dg-btn:focus-visible,.dg-card:focus-visible,.dg-pill:focus-visible{outline:3px solid #29C0F7;outline-offset:3px}
+.dg-card .dg-img{transition:transform 400ms cubic-bezier(0.23,1,0.32,1)}
+.dg-card:hover .dg-img{transform:scale(1.035)}
+.dg-card .dg-arrow{transition:transform 250ms cubic-bezier(0.23,1,0.32,1)}
+.dg-card:hover .dg-arrow{transform:translate(4px,-4px)}
+.dg-pcard{transition:transform 300ms cubic-bezier(0.23,1,0.32,1),border-color 200ms ease}
+.dg-pcard:hover{transform:translateY(-4px)}
+.dg-row{transition:background-color 200ms ease}
+.dg-row:hover{background-color:rgba(127,127,127,0.06)}
+.dg-row .dg-row-title{transition:transform 300ms cubic-bezier(0.23,1,0.32,1)}
+.dg-row:hover .dg-row-title{transform:translateX(6px)}
+.dg-row .dg-arrow{transition:transform 250ms cubic-bezier(0.23,1,0.32,1)}
+.dg-row:hover .dg-arrow{transform:translate(4px,-4px)}
+.dg-row:focus-visible{outline:3px solid #29C0F7;outline-offset:2px}
+.dg-row-thumb{opacity:0;transform:translateY(-50%) scale(0.92) rotate(-3deg);transform-origin:center;transition:opacity 220ms ease,transform 380ms cubic-bezier(0.23,1,0.32,1)}
+@media (hover:hover) and (pointer:fine){.dg-row:hover .dg-row-thumb{opacity:1;transform:translateY(-50%) scale(1) rotate(-3deg)}}
+@media (max-width:640px){.dg-row-thumb{display:none}}
+.dg-clamp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dg-nav .dg-nav-label{transition:transform 260ms cubic-bezier(0.23,1,0.32,1)}
+.dg-nav:hover .dg-nav-glow{opacity:0.9 !important;transform:scaleX(1) !important}
+.dg-nav:hover .dg-nav-bar{transform:scaleX(1) !important}
+.dg-nav:hover .dg-nav-label{transform:translateY(-1px)}
+.dg-nav:active .dg-nav-label{transform:scale(0.96)}
+.dg-nav:focus-visible{outline:3px solid #29C0F7;outline-offset:3px;border-radius:8px}
+.dg-why{transition:transform 300ms cubic-bezier(0.23,1,0.32,1),box-shadow 300ms cubic-bezier(0.23,1,0.32,1)}
+.dg-why .dg-why-glow{transition:opacity 350ms cubic-bezier(0.23,1,0.32,1),transform 450ms cubic-bezier(0.23,1,0.32,1)}
+.dg-why:hover{transform:translateY(-6px)}
+.dg-w1-phone{transform:rotate(-6deg);transition:transform 450ms cubic-bezier(0.23,1,0.32,1)}
+.dg-w1-post{transform:rotate(5deg);transition:transform 450ms cubic-bezier(0.23,1,0.32,1)}
+.dg-why:hover .dg-w1-phone{transform:translate(-14px,-4px) rotate(-10deg)}
+.dg-why:hover .dg-w1-post{transform:translate(14px,6px) rotate(9deg)}
+.dg-w2-btn{transition:transform 160ms cubic-bezier(0.23,1,0.32,1),box-shadow 160ms cubic-bezier(0.23,1,0.32,1)}
+.dg-why:hover .dg-w2-btn{transform:translate(2px,2px);box-shadow:2px 2px 0 #000 !important}
+.dg-w3-a,.dg-w3-b,.dg-w3-c{transition:transform 480ms cubic-bezier(0.23,1,0.32,1)}
+.dg-w3-a{transform:translate(-8px,6px) rotate(-4deg)}
+.dg-w3-b{transform:translate(0,0) rotate(1deg)}
+.dg-w3-c{transform:translate(8px,-6px) rotate(5deg)}
+.dg-why:hover .dg-w3-a{transform:translate(-96px,10px) rotate(-12deg)}
+.dg-why:hover .dg-w3-b{transform:translate(0,-12px) rotate(0deg)}
+.dg-why:hover .dg-w3-c{transform:translate(96px,10px) rotate(12deg)}
+.dg-why:hover .dg-why-glow{opacity:0.75 !important;transform:scale(1.1) !important}
+section[id]{scroll-margin-top:110px}
+.dg-cta{transition:transform 200ms cubic-bezier(0.23,1,0.32,1),box-shadow 250ms ease}
+.dg-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(163,26,254,0.28)}
+.dg-cta:active{transform:scale(0.97)}
+.dg-cta:focus-visible{outline:3px solid #29C0F7;outline-offset:3px}
+.dg-pill{transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.dg-feed img{transition:transform 300ms cubic-bezier(0.23,1,0.32,1)}
+.dg-feed img:hover{transform:translateY(-6px)}
+@keyframes dg-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes dg-rise{from{opacity:0;transform:translateY(18px) scale(0.96);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+.dg-rise{animation:dg-rise 700ms cubic-bezier(0.23,1,0.32,1) both}
+@keyframes dg-pop{from{opacity:0;transform:translateY(8px) scale(0.96)}to{opacity:1;transform:none}}
+.dg-caret{animation:dg-blink 1.1s steps(1) infinite}
+.dg-popin{animation:dg-pop 380ms cubic-bezier(0.23,1,0.32,1) both}
+@media (max-width:900px){
+#inicio{width:auto !important;height:auto !important;min-height:520px;padding-top:110px !important}
+#code{width:auto !important;height:auto !important;padding-bottom:64px !important}
+.dg-hdr-nav{display:none !important}
+header .dg-glass{flex-wrap:nowrap !important;padding-left:18px !important}
+}
+#inicio > h2,#inicio > p{display:none !important}
+@media (max-width:480px){header .dg-cta{display:none !important}header .dg-glass{gap:8px !important;padding-right:8px !important}}
+@media (prefers-reduced-motion: reduce){
+.dg-caret,.dg-popin,.dg-rise{animation:none}
+.dg-nav .dg-nav-glow,.dg-nav .dg-nav-bar,.dg-nav .dg-nav-label,.dg-why,.dg-why .dg-why-glow{transition:opacity 200ms ease !important}
+.dg-why:hover,.dg-nav:hover .dg-nav-label{transform:none}
+.dg-w1-phone,.dg-w1-post,.dg-w2-btn,.dg-w3-a,.dg-w3-b,.dg-w3-c{transition:none !important}
+.dg-card .dg-img,.dg-feed img{transition:none !important}
+.dg-pcard:hover{transform:none}
+.dg-row .dg-row-title,.dg-row .dg-arrow{transition:none !important}
+.dg-row:hover .dg-row-title{transform:none}
+.dg-row-thumb{transition:opacity 150ms ease !important}
+.dg-row:hover .dg-row-thumb{transform:translateY(-50%) rotate(-3deg) !important}
+.dg-odo{transition:opacity 200ms ease !important;transform:none !important;filter:none !important}
+html{scroll-behavior:auto}
+}
+</style>
+</helmet>
+<div ref="{{setRoot}}" onPointerMove="{{onRootMove}}" style="position: relative; min-height: 100vh; background: {{t.bg}}; color: {{t.text}}; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.55; transition: background-color 250ms ease, color 250ms ease; overflow: hidden">
+
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(to right, {{t.gridLine}} 1px, transparent 1px), linear-gradient(to bottom, {{t.gridLine}} 1px, transparent 1px); background-size: 48px 48px"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; z-index: 0; background-image: linear-gradient(to right, {{t.gridGlow}} 1px, transparent 1px), linear-gradient(to bottom, {{t.gridGlow}} 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(240px circle at var(--gx, -999px) var(--gy, -999px), #000 0%, transparent 75%); mask-image: radial-gradient(240px circle at var(--gx, -999px) var(--gy, -999px), #000 0%, transparent 75%)"></div>
+
+<header style="position: fixed; top: 14px; left: 0; right: 0; z-index: 50; padding: 0 16px; pointer-events: none">
+<div class="dg-glass" style="pointer-events: auto; max-width: 1240px; margin: 0 auto; padding: 10px 10px 10px 24px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; border-radius: 28px; background: {{t.glass}}; backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); border: 1px solid {{t.glassBorder}}; box-shadow: inset 0 1px 0 {{t.glassHi}}, inset 0 -1px 0 rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.14)">
+<a href="#inicio" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: 0.02em; line-height: 1">DIEGO<br>GRANADOS</span>
+</a>
+<nav class="dg-hdr-nav" aria-label="{{c.navLabel}}" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; font-weight: 500; font-size: 15px">
+<a href="#trabajo" class="dg-nav" aria-current="{{nav.trabajo.current}}" style="position: relative; text-decoration: none; padding: 10px 6px; color: {{t.text}}">
+<span aria-hidden="true" class="dg-nav-glow" style="position: absolute; left: -10px; right: -10px; bottom: 0; height: 22px; border-radius: 999px; background: #29C0F7; filter: blur(12px); opacity: {{nav.trabajo.glow}}; transform: scaleX({{nav.trabajo.scale}}); transition: opacity 260ms cubic-bezier(0.23, 1, 0.32, 1), transform 360ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span aria-hidden="true" class="dg-nav-bar" style="position: absolute; left: 6px; right: 6px; bottom: 5px; height: 2px; border-radius: 2px; background: #29C0F7; transform-origin: left center; transform: scaleX({{nav.trabajo.bar}}); transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span class="dg-nav-label" style="position: relative; display: inline-block; font-weight: {{nav.trabajo.weight}}">{{c.navWork}}</span>
+</a>
+<a href="#digital" class="dg-nav" aria-current="{{nav.digital.current}}" style="position: relative; text-decoration: none; padding: 10px 6px; color: {{t.text}}">
+<span aria-hidden="true" class="dg-nav-glow" style="position: absolute; left: -10px; right: -10px; bottom: 0; height: 22px; border-radius: 999px; background: #E9E124; filter: blur(12px); opacity: {{nav.digital.glow}}; transform: scaleX({{nav.digital.scale}}); transition: opacity 260ms cubic-bezier(0.23, 1, 0.32, 1), transform 360ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span aria-hidden="true" class="dg-nav-bar" style="position: absolute; left: 6px; right: 6px; bottom: 5px; height: 2px; border-radius: 2px; background: #E9E124; transform-origin: left center; transform: scaleX({{nav.digital.bar}}); transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span class="dg-nav-label" style="position: relative; display: inline-block; font-weight: {{nav.digital.weight}}">{{c.navDigital}}</span>
+</a>
+<a href="#por-que" class="dg-nav" aria-current="{{nav.porque.current}}" style="position: relative; text-decoration: none; padding: 10px 6px; color: {{t.text}}">
+<span aria-hidden="true" class="dg-nav-glow" style="position: absolute; left: -10px; right: -10px; bottom: 0; height: 22px; border-radius: 999px; background: #70D6BE; filter: blur(12px); opacity: {{nav.porque.glow}}; transform: scaleX({{nav.porque.scale}}); transition: opacity 260ms cubic-bezier(0.23, 1, 0.32, 1), transform 360ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span aria-hidden="true" class="dg-nav-bar" style="position: absolute; left: 6px; right: 6px; bottom: 5px; height: 2px; border-radius: 2px; background: #70D6BE; transform-origin: left center; transform: scaleX({{nav.porque.bar}}); transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span class="dg-nav-label" style="position: relative; display: inline-block; font-weight: {{nav.porque.weight}}">{{c.navWhy}}</span>
+</a>
+<a href="#sobre-mi" class="dg-nav" aria-current="{{nav.sobre.current}}" style="position: relative; text-decoration: none; padding: 10px 6px; color: {{t.text}}">
+<span aria-hidden="true" class="dg-nav-glow" style="position: absolute; left: -10px; right: -10px; bottom: 0; height: 22px; border-radius: 999px; background: #A31AFE; filter: blur(12px); opacity: {{nav.sobre.glow}}; transform: scaleX({{nav.sobre.scale}}); transition: opacity 260ms cubic-bezier(0.23, 1, 0.32, 1), transform 360ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span aria-hidden="true" class="dg-nav-bar" style="position: absolute; left: 6px; right: 6px; bottom: 5px; height: 2px; border-radius: 2px; background: #A31AFE; transform-origin: left center; transform: scaleX({{nav.sobre.bar}}); transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span class="dg-nav-label" style="position: relative; display: inline-block; font-weight: {{nav.sobre.weight}}">{{c.navAbout}}</span>
+</a>
+<a href="#contacto" class="dg-nav" aria-current="{{nav.contacto.current}}" style="position: relative; text-decoration: none; padding: 10px 6px; color: {{t.text}}">
+<span aria-hidden="true" class="dg-nav-glow" style="position: absolute; left: -10px; right: -10px; bottom: 0; height: 22px; border-radius: 999px; background: #29C0F7; filter: blur(12px); opacity: {{nav.contacto.glow}}; transform: scaleX({{nav.contacto.scale}}); transition: opacity 260ms cubic-bezier(0.23, 1, 0.32, 1), transform 360ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span aria-hidden="true" class="dg-nav-bar" style="position: absolute; left: 6px; right: 6px; bottom: 5px; height: 2px; border-radius: 2px; background: #29C0F7; transform-origin: left center; transform: scaleX({{nav.contacto.bar}}); transition: transform 320ms cubic-bezier(0.23, 1, 0.32, 1)"></span>
+<span class="dg-nav-label" style="position: relative; display: inline-block; font-weight: {{nav.contacto.weight}}">{{c.navContact}}</span>
+</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 10px">
+<div role="group" aria-label="{{c.langLabel}}" style="display: flex; padding: 3px; border-radius: 999px; background: {{t.pillBg}}; border: 1px solid {{t.line}}">
+<button type="button" class="dg-btn" onClick="{{setEs}}" aria-pressed="{{isEs}}" style="min-width: 44px; height: 38px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13px 'JetBrains Mono', monospace; background: {{esBg}}; color: {{esColor}}">ES</button>
+<button type="button" class="dg-btn" onClick="{{setEn}}" aria-pressed="{{isEn}}" style="min-width: 44px; height: 38px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13px 'JetBrains Mono', monospace; background: {{enBg}}; color: {{enColor}}">EN</button>
+</div>
+<button type="button" class="dg-btn" onClick="{{toggleTheme}}" aria-label="{{c.themeLabel}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid {{t.line}}; background: {{t.pillBg}}; color: {{t.text}}; cursor: pointer; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{isDark}}" hint-placeholder-val="{{true}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{isLight}}" hint-placeholder-val="{{false}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+</sc-if>
+</button>
+<a href="#contacto" class="dg-cta" style="display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 18px 0 8px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 15px; color: {{t.text}}; border: 2px solid transparent; background: linear-gradient({{t.ctaBg}}, {{t.ctaBg}}) padding-box, linear-gradient(120deg, #29C0F7, #A31AFE 55%, #E9E124) border-box">
+<span aria-hidden="true" style="width: 32px; height: 32px; border-radius: 12px; background: #111114; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"></path></svg></span><span class="dg-cta-label">{{c.ctaContact}}</span></a>
+</div>
+</div>
+</header>
+
+<section id="inicio" ref="{{setHero}}" onPointerMove="{{onHeroMove}}" onPointerLeave="{{onHeroLeave}}" style="position: relative; z-index: 1; height: 789px; overflow: hidden; width: 1426px">
+<div ref="{{setGlow}}" aria-hidden="true" style="position: absolute; inset: -80px; pointer-events: none; opacity: 0; transition: opacity 500ms cubic-bezier(0.23, 1, 0.32, 1); -webkit-mask-image: radial-gradient(420px circle at var(--hx, 50%) var(--hy, 50%), #000 0%, rgba(0,0,0,0.55) 38%, transparent 72%); mask-image: radial-gradient(420px circle at var(--hx, 50%) var(--hy, 50%), #000 0%, rgba(0,0,0,0.55) 38%, transparent 72%)">
+<div style="position: absolute; inset: 0; filter: blur(48px); opacity: {{t.glowOpacity}}; background: radial-gradient(38% 50% at 14% 28%, #29C0F7 0%, rgba(41,192,247,0) 70%), radial-gradient(36% 48% at 86% 22%, #E9E124 0%, rgba(233,225,36,0) 70%), radial-gradient(42% 56% at 72% 84%, #A31AFE 0%, rgba(163,26,254,0) 70%), radial-gradient(38% 52% at 28% 86%, #70D6BE 0%, rgba(112,214,190,0) 70%), radial-gradient(30% 40% at 50% 46%, #A31AFE 0%, rgba(163,26,254,0) 70%), radial-gradient(26% 36% at 60% 30%, #29C0F7 0%, rgba(41,192,247,0) 70%)"></div>
+</div>
+
+<div style="position: relative; z-index: 2; height: 100%; padding: 56px 24px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; pointer-events: none">
+<img class="dg-rise" src="assets/e468527323b31e8de140503de18d069d.png" alt="{{c.avatarAlt}}" style="height: clamp(170px, 19vw, 280px); width: auto; display: block; filter: drop-shadow(3px 0 0 #FFFFFF) drop-shadow(-3px 0 0 #FFFFFF) drop-shadow(0 3px 0 #FFFFFF) drop-shadow(0 -3px 0 #FFFFFF) drop-shadow(0 18px 30px rgba(0,0,0,0.25))">
+<h1 class="dg-rise" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(40px, 5vw, 72px); line-height: 0.9; letter-spacing: -0.02em; color: {{t.text}}; animation-delay: 120ms">DIEGO<br>GRANADOS</h1><p class="dg-rise" style="margin: 4px 0 0; font: 500 13px 'JetBrains Mono', monospace; letter-spacing: 0.16em; text-transform: uppercase; color: {{t.muted}}; animation-delay: 220ms">{{c.heroRole}}</p>
+<h2 aria-label="{{c.heroAria}}" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(84px, 14vw, 216px); line-height: 0.86; letter-spacing: -0.045em; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 0 0.12em">
+<span style="display: inline-flex; align-items: flex-end">
+<span style="position: relative; display: inline-block; height: 0.86em; overflow: hidden">
+<span aria-hidden="true" style="visibility: hidden">0</span>
+<span class="dg-odo" style="position: absolute; left: 0; right: 0; top: 0; text-align: center; transform: {{zero.transform}}; opacity: {{zero.opacity}}; filter: {{zero.filter}}; transition: transform 520ms cubic-bezier(0.23, 1, 0.32, 1), opacity 320ms cubic-bezier(0.23, 1, 0.32, 1), filter 520ms cubic-bezier(0.23, 1, 0.32, 1)">0</span>
+<span class="dg-odo" style="position: absolute; left: 0; right: 0; top: 0; text-align: center; color: #A31AFE; transform: {{one.transform}}; opacity: {{one.opacity}}; filter: {{one.filter}}; transition: transform 520ms cubic-bezier(0.23, 1, 0.32, 1), opacity 320ms cubic-bezier(0.23, 1, 0.32, 1), filter 520ms cubic-bezier(0.23, 1, 0.32, 1)">1</span>
+</span>
+<span>%</span>
+</span>
+<span style="display: inline-flex; align-items: flex-end">code<span class="dg-caret" style="display: inline-block; width: 0.08em; height: 0.7em; margin-left: 0.06em; margin-bottom: 0.08em; background: currentColor"></span></span>
+</h2><p aria-live="polite" style="margin: 22px 0 0; display: inline-flex; align-items: center; gap: 10px; font: 600 15px 'JetBrains Mono', monospace; opacity: {{badge.opacity}}; transform: {{badge.transform}}; transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 160ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 160ms">
+<span style="padding: 4px 10px; border-radius: 8px; background: #A31AFE; color: #FFFFFF">&lt;/&gt;</span>
+<span>{{badgeText}}</span>
+</p>
+
+</div>
+<p aria-live="polite" style="margin: 22px 0 0; display: inline-flex; align-items: center; gap: 10px; font: 600 15px 'JetBrains Mono', monospace; opacity: {{badge.opacity}}; transform: {{badge.transform}}; transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 160ms, opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 160ms">
+<span style="padding: 4px 10px; border-radius: 8px; background: #A31AFE; color: #FFFFFF">&lt;/&gt;</span>
+<span>{{badgeText}}</span>
+</p>
+<h2 aria-label="{{c.heroAria}}" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(84px, 14vw, 216px); line-height: 0.86; letter-spacing: -0.045em; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 0 0.12em">
+<span style="display: inline-flex; align-items: flex-end">
+<span style="position: relative; display: inline-block; height: 0.86em; overflow: hidden">
+<span aria-hidden="true" style="visibility: hidden">0</span>
+<span class="dg-odo" style="position: absolute; left: 0; right: 0; top: 0; text-align: center; transform: {{zero.transform}}; opacity: {{zero.opacity}}; filter: {{zero.filter}}; transition: transform 520ms cubic-bezier(0.23, 1, 0.32, 1), opacity 320ms cubic-bezier(0.23, 1, 0.32, 1), filter 520ms cubic-bezier(0.23, 1, 0.32, 1)">0</span>
+<span class="dg-odo" style="position: absolute; left: 0; right: 0; top: 0; text-align: center; color: #A31AFE; transform: {{one.transform}}; opacity: {{one.opacity}}; filter: {{one.filter}}; transition: transform 520ms cubic-bezier(0.23, 1, 0.32, 1), opacity 320ms cubic-bezier(0.23, 1, 0.32, 1), filter 520ms cubic-bezier(0.23, 1, 0.32, 1)">1</span>
+</span>
+<span>%</span>
+</span>
+<span style="display: inline-flex; align-items: flex-end">code<span class="dg-caret" style="display: inline-block; width: 0.08em; height: 0.7em; margin-left: 0.06em; margin-bottom: 0.08em; background: currentColor"></span></span>
+</h2></section>
+
+<section id="code" ref="{{setCode}}" aria-label="{{c.heroAria}}" style="position: relative; z-index: 1; padding: 8px 24px 120px; border-bottom: 1px solid {{t.line}}; width: 1368px; height: 155px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 36px; text-align: center">
+<div style="display: flex; flex-direction: column; align-items: center">
+
+
+</div>
+<div style="max-width: 640px; display: flex; flex-direction: column; align-items: center; gap: 22px">
+<p style="margin: 0; font-size: 19px; line-height: 1.5;">{{c.heroSub}}</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+<a href="#trabajo" class="dg-btn" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; background: {{t.invert}}; color: {{t.invertText}}; text-decoration: none; font-weight: 600; border: 2px solid #000">{{c.ctaWork}}
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"></path></svg></a>
+<a href="#contacto" class="dg-btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 999px; background: #E9E124; color: #111114; text-decoration: none; font-weight: 600; border: 2px solid #000">{{c.ctaContact}}</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="trabajo" aria-labelledby="work-title" style="position: relative; z-index: 1; padding: 40px 24px 120px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">{{c.workEyebrow}}</p>
+<h2 id="work-title" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 76px); line-height: 0.95; letter-spacing: -0.035em">{{c.workTitle}}</h2>
+</div>
+<div role="group" aria-label="{{c.filterLabel}}" style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" class="dg-pill" onClick="{{fAllClick}}" aria-pressed="{{fAll}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px 'Instrument Sans', sans-serif; border: 1.5px solid {{pAll.border}}; background: {{pAll.bg}}; color: {{pAll.color}}">{{c.fAll}}</button>
+<button type="button" class="dg-pill" onClick="{{fUxClick}}" aria-pressed="{{fUx}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px 'Instrument Sans', sans-serif; border: 1.5px solid {{pUx.border}}; background: {{pUx.bg}}; color: {{pUx.color}}; display: inline-flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 50%; background: #29C0F7; border: 1px solid #000"></span>UX/UI</button>
+<button type="button" class="dg-pill" onClick="{{fDigClick}}" aria-pressed="{{fDig}}" style="min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: 600 14px 'Instrument Sans', sans-serif; border: 1.5px solid {{pDig.border}}; background: {{pDig.bg}}; color: {{pDig.color}}; display: inline-flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 50%; background: #E9E124; border: 1px solid #000"></span>{{c.fDig}}</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 28px">
+<a href="Cadejo.dc.html" class="dg-card dg-pcard" style="display: flex; flex-direction: column; text-decoration: none; border-radius: 26px; overflow: hidden; background: #0E0E0E; color: #F5F5F0; border: 2px solid #000; box-shadow: 8px 8px 0 #E9E124">
+<div style="overflow: hidden; aspect-ratio: 16 / 10; background: #111">
+<img class="dg-img" src="assets/e94ed5903bed815cf2e11c987fe28ecd.jpg" alt="{{c.cadAlt}}" style="width: 100%; height: 100%; object-fit: cover; display: block">
+</div>
+<div style="flex: 1; padding: 30px 32px 30px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+<span style="padding: 5px 12px; border-radius: 999px; background: #E9E124; color: #111114; font: 600 12px 'JetBrains Mono', monospace">{{c.featured}}</span>
+<span style="font: 500 12px 'JetBrains Mono', monospace; color: #C9C9CF">UX/UI + {{c.fDig}}</span>
+</div>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 3vw, 40px); line-height: 1; letter-spacing: -0.03em">Token Cadejo</h3>
+<p class="dg-clamp" style="margin: 0; color: #C9C9CF; font-size: 16px; line-height: 1.5">{{c.cadDesc}}</p>
+<div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 18px">
+<span style="font: 500 13px 'JetBrains Mono', monospace; color: #C9C9CF">DitoBanx × Cadejo Brewing Co.</span>
+<span style="display: inline-flex; align-items: center; gap: 8px; font-weight: 600; white-space: nowrap">{{c.seeCase}}<svg class="dg-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+</div>
+</div>
+</a>
+<sc-if value="{{showVice}}" hint-placeholder-val="{{true}}">
+<a href="Vice.dc.html" class="dg-card dg-pcard" style="display: flex; flex-direction: column; text-decoration: none; border-radius: 26px; overflow: hidden; background: {{t.card}}; color: {{t.text}}; border: 2px solid #000; box-shadow: 8px 8px 0 #70D6BE">
+<div style="overflow: hidden; aspect-ratio: 16 / 10; background: #FFFFFF">
+<img class="dg-img" src="assets/174b07b3a84976567047515d6a3d06cb.jpg" alt="{{c.viceAlt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block">
+</div>
+<div style="flex: 1; padding: 30px 32px 30px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+<span style="padding: 5px 12px; border-radius: 999px; background: #70D6BE; color: #111114; font: 600 12px 'JetBrains Mono', monospace">{{c.featured}}</span>
+<span style="font: 500 12px 'JetBrains Mono', monospace; color: {{t.muted}}">UX/UI · {{c.saas}}</span>
+</div>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 3vw, 40px); line-height: 1; letter-spacing: -0.03em">VICE Software</h3>
+<p class="dg-clamp" style="margin: 0; color: {{t.muted}}; font-size: 16px; line-height: 1.5">{{c.viceDesc}}</p>
+<div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid {{t.line}}; padding-top: 18px">
+<span style="font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">CRM · Email · Kiosk · Forms · Wallet</span>
+<span style="display: inline-flex; align-items: center; gap: 8px; font-weight: 600; white-space: nowrap">{{c.seeCase}}<svg class="dg-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+</div>
+</div>
+</a>
+</sc-if>
+</div>
+
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-top: 28px; padding-bottom: 14px; border-bottom: 1px solid {{t.line}}">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.02em">{{c.moreWork}}</h3>
+<span style="font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{projCount}}</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 28px">
+<sc-for list="{{topProjects}}" as="p" hint-placeholder-count="6">
+<a href="{{p.href}}" class="dg-card dg-pcard" style="display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; background: {{t.card}}; border: 1px solid {{t.line}}; text-decoration: none; color: {{t.text}}">
+<div style="position: relative; overflow: hidden; aspect-ratio: 4 / 3; background: {{t.bg2}}; border-bottom: 1px solid {{t.line}}">
+<img class="dg-img" src="{{p.img}}" alt="{{p.alt}}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block">
+</div>
+<div style="flex: 1; padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+<span style="display: inline-flex; align-items: center; gap: 7px; font: 600 11px 'JetBrains Mono', monospace; letter-spacing: 0.03em; text-transform: uppercase; color: {{t.muted}}"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 50%; background: {{p.accent}}; border: 1px solid #000"></span>{{p.tag}}</span>
+<span style="font: 500 12px 'JetBrains Mono', monospace; color: {{t.muted}}">{{p.num}}</span>
+</div>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.15; letter-spacing: -0.02em">{{p.title}}</h3>
+<p class="dg-clamp" style="margin: 0; color: {{t.muted}}; font-size: 15px; line-height: 1.5">{{p.desc}}</p>
+<div style="margin-top: auto; padding-top: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="font: 500 12px 'JetBrains Mono', monospace; color: {{t.muted}}">{{p.kind}}</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; white-space: nowrap">{{c.seeProject}}<svg class="dg-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+</div>
+</div>
+</a>
+</sc-for>
+</div>
+
+<sc-if value="{{hasArchive}}" hint-placeholder-val="{{true}}">
+<div style="margin-top: 20px; display: flex; flex-direction: column">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid {{t.line}}">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: -0.02em">{{c.archiveTitle}}</h3>
+<span style="font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{archiveCount}}</span>
+</div>
+<sc-for list="{{archive}}" as="r" hint-placeholder-count="6">
+<a href="{{r.href}}" class="dg-row" style="position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr) auto 28px; align-items: center; gap: 18px; min-height: 76px; padding: 14px 8px; border-bottom: 1px solid {{t.line}}; text-decoration: none; color: {{t.text}}">
+<span style="font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{r.num}}</span>
+<span style="display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 16px; row-gap: 4px; min-width: 0">
+<span class="dg-row-title" style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(20px, 2.2vw, 28px); line-height: 1.15; letter-spacing: -0.02em">{{r.title}}</span>
+<span style="color: {{t.muted}}; font-size: 15px">{{r.desc}}</span>
+</span>
+<span style="display: inline-flex; align-items: center; gap: 7px; font: 500 12px 'JetBrains Mono', monospace; color: {{t.muted}}; white-space: nowrap"><span aria-hidden="true" style="width: 9px; height: 9px; border-radius: 50%; background: {{r.accent}}; border: 1px solid #000"></span>{{r.kind}}</span>
+<svg class="dg-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+<span aria-hidden="true" class="dg-row-thumb" style="position: absolute; right: 64px; top: 50%; width: 200px; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; border: 2px solid #000; box-shadow: 6px 6px 0 {{r.accent}}; background: {{t.bg2}}; pointer-events: none; z-index: 2"><img src="{{r.img}}" alt="" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block"></span>
+</a>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</section>
+
+<section id="digital" aria-labelledby="dig-title" style="position: relative; z-index: 1; padding: 100px 0 110px; background: {{t.bg2}}; border-top: 1px solid {{t.line}}; border-bottom: 1px solid {{t.line}}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 720px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">{{c.digEyebrow}}</p>
+<h2 id="dig-title" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 76px); line-height: 0.95; letter-spacing: -0.035em">{{c.digTitle}}</h2>
+<p style="margin: 6px 0 0; color: {{t.muted}}; font-size: 18px">{{c.digBody}}</p>
+</div>
+<p style="margin: 0; font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{c.digScroll}} →</p>
+</div>
+<div class="dg-feed" tabindex="0" aria-label="{{c.digFeedLabel}}" style="margin-top: 44px; display: flex; gap: 20px; overflow-x: auto; padding: 12px 24px 24px; scroll-snap-type: x proximity">
+<sc-for list="{{feed}}" as="f" hint-placeholder-count="8">
+<figure style="margin: 0; flex: 0 0 auto; scroll-snap-align: start; display: flex; flex-direction: column; gap: 10px">
+<img src="{{f.img}}" alt="{{f.alt}}" loading="lazy" style="height: 440px; width: auto; display: block; border-radius: 16px; border: 2px solid #000; box-shadow: 6px 6px 0 {{f.shadow}}">
+<figcaption style="font: 500 12px 'JetBrains Mono', monospace; color: {{t.muted}}">{{f.cap}}</figcaption>
+</figure>
+</sc-for>
+</div>
+<div style="max-width: 1240px; margin: 56px auto 0; padding: 0 24px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px">
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 3vw, 40px); letter-spacing: -0.02em">{{c.motionTitle}}</h3>
+<p style="margin: 0; font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{c.motionHint}}</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+<figure style="margin: 0; flex: 3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<video ref="{{videoRef}}" src="assets/60b3a0026495b6b85f6f35c582cfe57d.mp4" poster="assets/bd943f2d238085de15a7b7a7d508d1c0.jpg" controls="{{yes}}" preload="metadata" aria-label="{{c.vidWallet}}" style="width: 100%; aspect-ratio: 16 / 9; display: block; border-radius: 18px; border: 2px solid #000; background: #F2F2F2; box-shadow: 8px 8px 0 #E9E124; object-fit: cover"></video>
+<figcaption style="font: 500 12px 'JetBrains Mono', monospace; color: {{t.muted}}">{{c.vidWallet}}</figcaption>
+</figure>
+<figure style="margin: 0; flex: 1 1 240px; max-width: 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<video ref="{{videoRef}}" src="assets/3bbc92a64af6b7ac1814285534742315.mp4" poster="assets/98a73c45fdc08498e4c25f6893339019.jpg" controls="{{yes}}" preload="metadata" aria-label="{{c.vidStory}}" style="width: 100%; aspect-ratio: 9 / 16; display: block; border-radius: 18px; border: 2px solid #000; background: #F2F2F2; box-shadow: 8px 8px 0 #29C0F7; object-fit: cover"></video>
+<figcaption style="font: 500 12px 'JetBrains Mono', monospace; color: {{t.muted}}">{{c.vidStory}}</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<section id="por-que" aria-labelledby="why-title" style="position: relative; z-index: 1; padding: 120px 24px 40px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">{{c.whyEyebrow}}</p>
+<h2 id="why-title" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(44px, 5.4vw, 76px); line-height: 0.95; letter-spacing: -0.035em">{{c.whyTitle}}</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 28px">
+<article class="dg-why" style="position: relative; border-radius: 24px; border: 2px solid #000; background: {{t.card}}; display: flex; flex-direction: column; isolation: isolate; overflow: visible"><div aria-hidden="true" class="dg-why-glow" style="position: absolute; left: 12%; right: 12%; bottom: -24px; height: 70px; border-radius: 999px; background: #29C0F7; filter: blur(32px); opacity: 0.25; z-index: -1"></div><div aria-hidden="true" class="dg-stage" style="position: relative; height: 190px; border-radius: 22px 22px 0 0; border-bottom: 2px solid #000; background: {{t.bg2}}; overflow: hidden; background-image: radial-gradient({{t.line}} 1px, transparent 1px); background-size: 16px 16px">
+<div class="dg-w1-phone" style="position: absolute; left: 50%; top: 26px; width: 78px; height: 150px; margin-left: -70px; border-radius: 16px; border: 2px solid #000; background: #FFFFFF; box-sizing: border-box; padding: 14px 8px 8px; display: flex; flex-direction: column; gap: 6px">
+<span style="height: 8px; width: 60%; border-radius: 4px; background: #111114"></span>
+<span style="height: 44px; border-radius: 8px; background: #29C0F7; border: 1.5px solid #000"></span>
+<span style="height: 6px; width: 90%; border-radius: 3px; background: #D5D5DA"></span>
+<span style="height: 6px; width: 70%; border-radius: 3px; background: #D5D5DA"></span>
+<span style="margin-top: auto; height: 16px; border-radius: 999px; background: #111114"></span>
+</div>
+<div class="dg-w1-post" style="position: absolute; left: 50%; top: 46px; width: 104px; height: 104px; margin-left: -4px; border-radius: 14px; border: 2px solid #000; background: #E9E124; box-sizing: border-box; padding: 10px; display: flex; flex-direction: column; justify-content: space-between">
+<span style="font: 800 22px/0.9 'Bricolage Grotesque', sans-serif; color: #111114; letter-spacing: -0.03em">{{c.w1post}}</span>
+<span style="align-self: flex-end; width: 26px; height: 26px; border-radius: 50%; background: #A31AFE; border: 1.5px solid #000"></span>
+</div>
+</div>
+<div style="padding: 26px 30px 32px; display: flex; flex-direction: column; gap: 12px">
+<span style="font: 600 12px 'JetBrains Mono', monospace; color: {{t.muted}}">01 / 03</span>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; line-height: 1.05; letter-spacing: -0.02em">{{c.why1t}}</h3>
+<p style="margin: 0; color: {{t.muted}}; line-height: 1.55">{{c.why1b}}</p>
+</div>
+</article>
+<article class="dg-why" style="position: relative; border-radius: 24px; border: 2px solid #000; background: {{t.card}}; display: flex; flex-direction: column; isolation: isolate; overflow: visible"><div aria-hidden="true" class="dg-why-glow" style="position: absolute; left: 12%; right: 12%; bottom: -24px; height: 70px; border-radius: 999px; background: #A31AFE; filter: blur(32px); opacity: 0.25; z-index: -1"></div><div aria-hidden="true" class="dg-stage" style="position: relative; height: 190px; border-radius: 22px 22px 0 0; border-bottom: 2px solid #000; background: {{t.bg2}}; overflow: hidden; background-image: radial-gradient({{t.line}} 1px, transparent 1px); background-size: 16px 16px">
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 0 20px">
+<div style="border-radius: 12px; border: 2px solid #000; background: #111114; color: #E8E8EE; padding: 12px 14px; font: 500 12px/1.6 'JetBrains Mono', monospace; white-space: nowrap">
+<div><span style="color: #A31AFE">&lt;Boton</span> <span style="color: #70D6BE">tipo</span>=<span style="color: #E9E124">"primario"</span><span style="color: #A31AFE">&gt;</span></div>
+<div style="padding-left: 14px">{{c.w2label}}<span class="dg-caret" style="display: inline-block; width: 7px; height: 13px; margin-left: 2px; vertical-align: -2px; background: #E8E8EE"></span></div>
+<div><span style="color: #A31AFE">&lt;/Boton&gt;</span></div>
+</div>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; color: {{t.text}}"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+<span class="dg-w2-btn" style="flex: none; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 2px solid #000; background: #A31AFE; color: #FFFFFF; font: 700 15px 'Instrument Sans', sans-serif; display: inline-flex; align-items: center; box-shadow: 4px 4px 0 #000">{{c.w2label}}</span>
+</div>
+</div>
+<div style="padding: 26px 30px 32px; display: flex; flex-direction: column; gap: 12px">
+<span style="font: 600 12px 'JetBrains Mono', monospace; color: {{t.muted}}">02 / 03</span>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; line-height: 1.05; letter-spacing: -0.02em">{{c.why2t}}</h3>
+<p style="margin: 0; color: {{t.muted}}; line-height: 1.55">{{c.why2b}}</p>
+</div>
+</article>
+<article class="dg-why" style="position: relative; border-radius: 24px; border: 2px solid #000; background: {{t.card}}; display: flex; flex-direction: column; isolation: isolate; overflow: visible"><div aria-hidden="true" class="dg-why-glow" style="position: absolute; left: 12%; right: 12%; bottom: -24px; height: 70px; border-radius: 999px; background: #E9E124; filter: blur(32px); opacity: 0.25; z-index: -1"></div><div aria-hidden="true" class="dg-stage" style="position: relative; height: 190px; border-radius: 22px 22px 0 0; border-bottom: 2px solid #000; background: {{t.bg2}}; overflow: hidden; background-image: radial-gradient({{t.line}} 1px, transparent 1px); background-size: 16px 16px">
+<span class="dg-w3-a" style="position: absolute; left: 50%; top: 50%; width: 150px; margin: -38px 0 0 -75px; height: 76px; border-radius: 14px; border: 2px solid #000; background: #70D6BE; color: #111114; box-sizing: border-box; padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; font: 600 11px 'JetBrains Mono', monospace"><span style="opacity: 0.75">{{c.w3ak}}</span><span style="font: 800 20px/1 'Bricolage Grotesque', sans-serif; letter-spacing: -0.02em">{{c.w3a}}</span></span>
+<span class="dg-w3-b" style="position: absolute; left: 50%; top: 50%; width: 150px; margin: -38px 0 0 -75px; height: 76px; border-radius: 14px; border: 2px solid #000; background: #29C0F7; color: #111114; box-sizing: border-box; padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; font: 600 11px 'JetBrains Mono', monospace"><span style="opacity: 0.75">{{c.w3bk}}</span><span style="font: 800 20px/1 'Bricolage Grotesque', sans-serif; letter-spacing: -0.02em">{{c.w3b}}</span></span>
+<span class="dg-w3-c" style="position: absolute; left: 50%; top: 50%; width: 150px; margin: -38px 0 0 -75px; height: 76px; border-radius: 14px; border: 2px solid #000; background: #E9E124; color: #111114; box-sizing: border-box; padding: 12px 14px; display: flex; flex-direction: column; justify-content: space-between; font: 600 11px 'JetBrains Mono', monospace"><span style="opacity: 0.75">{{c.w3ck}}</span><span style="font: 800 20px/1 'Bricolage Grotesque', sans-serif; letter-spacing: -0.02em">{{c.w3c}}</span></span>
+</div>
+<div style="padding: 26px 30px 32px; display: flex; flex-direction: column; gap: 12px">
+<span style="font: 600 12px 'JetBrains Mono', monospace; color: {{t.muted}}">03 / 03</span>
+<h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px; line-height: 1.05; letter-spacing: -0.02em">{{c.why3t}}</h3>
+<p style="margin: 0; color: {{t.muted}}; line-height: 1.55">{{c.why3b}}</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section id="sobre-mi" aria-labelledby="about-title" style="position: relative; z-index: 1; padding: 120px 24px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 64px">
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div style="position: relative; width: 300px; height: 300px">
+<div aria-hidden="true" style="position: absolute; left: 22px; top: 22px; width: 300px; height: 300px; border-radius: 50%; background: #29C0F7; border: 3px solid #000"></div>
+<img src="assets/d38dae6c181bc1d0807fde13cac482b9.jpg" alt="{{c.photoAlt}}" style="position: relative; width: 300px; height: 300px; border-radius: 50%; object-fit: cover; display: block; border: 3px solid #000; box-sizing: border-box">
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">{{c.toolsTitle}}</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{tools}}" as="tl" hint-placeholder-count="7">
+<li style="padding: 8px 14px; border-radius: 999px; border: 1px solid {{t.line}}; background: {{t.card}}; font-size: 14px; font-weight: 500">{{tl.name}}</li>
+</sc-for>
+</ul>
+</div>
+</div>
+<div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">{{c.aboutEyebrow}}</p>
+<h2 id="about-title" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 4.4vw, 60px); line-height: 1; letter-spacing: -0.03em">{{c.aboutTitle}}</h2>
+<p style="margin: 0; font-size: 19px">{{c.aboutBody}}</p>
+<ol style="margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid {{t.line}}">
+<sc-for list="{{jobs}}" as="j" hint-placeholder-count="5">
+<li style="display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 20px 0; border-bottom: 1px solid {{t.line}}">
+<span style="flex: 0 0 170px; font: 500 14px 'JetBrains Mono', monospace; color: {{t.muted}}">{{j.when}}</span>
+<span style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<strong style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px">{{j.org}}</strong>
+<span style="color: {{t.muted}}">{{j.role}}</span>
+</span>
+</li>
+</sc-for>
+</ol>
+<p style="margin: 0; color: {{t.muted}}; font-size: 15px">{{c.edu}}</p>
+</div>
+</div>
+</section>
+
+<section id="contacto" aria-labelledby="contact-title" style="position: relative; z-index: 1; padding: 0 24px 100px">
+<div style="max-width: 1240px; margin: 0 auto; border-radius: 32px; border: 2px solid #000; background: #A31AFE; color: #FFFFFF; padding: clamp(36px, 6vw, 80px); box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px; box-shadow: 10px 10px 0 #E9E124">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase">{{c.contactEyebrow}}</p>
+<h2 id="contact-title" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(44px, 6vw, 88px); line-height: 0.92; letter-spacing: -0.04em">{{c.contactTitle}}</h2>
+<p style="margin: 0; font-size: 19px; max-width: 520px">{{c.contactBody}}</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; flex: 0 1 340px">
+<a href="mailto:die.rbg@gmail.com" class="dg-btn" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; padding: 0 24px; border-radius: 999px; background: #FFFFFF; color: #111114; text-decoration: none; font-weight: 600; border: 2px solid #000">die.rbg@gmail.com
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></a>
+<a href="https://wa.me/50377424402" class="dg-btn" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; padding: 0 24px; border-radius: 999px; background: #70D6BE; color: #111114; text-decoration: none; font-weight: 600; border: 2px solid #000">WhatsApp · 7742-4402
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg></a>
+</div>
+</div>
+</section>
+
+<footer style="position: relative; z-index: 1; border-top: 1px solid {{t.line}}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">
+<span>© 2026 Diego Granados · San Salvador</span>
+<span>{{c.footer}}</span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"modoInicial":{"editor":"enum","options":["auto","dark","light"],"default":"auto","section":"Sitio"},"idiomaInicial":{"editor":"enum","options":["auto","es","en"],"default":"auto","section":"Sitio"},"$preview":{"width":1440,"height":5600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { dark: true, lang: 'es', flipped: false, filter: 'all', active: '' };
+    this.root = null; this.hero = null; this.glow = null; this.raf = 0;
+    this.pos = { x: 0, y: 0 }; this.target = { x: 0, y: 0 }; this.hasPos = false;
+    this.setRoot = (el) => { this.root = el; };
+    this.setHero = (el) => { this.hero = el; };
+    this.setGlow = (el) => { this.glow = el; };
+    this.setCode = (el) => { this.code = el; };
+    this.videoRef = (el) => {
+      if (!el || el.__dg) return; el.__dg = 1;
+      el.muted = true; el.loop = true; el.playsInline = true; el.setAttribute('playsinline', '');
+      if (this.reduce) return;
+      if (window.IntersectionObserver) {
+        const io = new IntersectionObserver((en) => { en.forEach((x) => { if (x.isIntersecting) { const p = el.play(); if (p && p.catch) p.catch(() => {}); } else el.pause(); }); }, { threshold: 0.3 });
+        io.observe(el); (this.vids = this.vids || []).push(io);
+      } else { const p = el.play(); if (p && p.catch) p.catch(() => {}); }
+    };
+    this.onRootMove = (e) => {
+      if (!this.root) return;
+      const r = this.root.getBoundingClientRect();
+      this.root.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+      this.root.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+    };
+    this.onHeroMove = (e) => {
+      if (!this.hero || !this.glow) return;
+      const r = this.hero.getBoundingClientRect();
+      this.target = { x: e.clientX - r.left + 80, y: e.clientY - r.top + 80 };
+      if (!this.hasPos || this.reduce) { this.pos = { ...this.target }; this.hasPos = true; this.applyGlow(); }
+      this.glow.style.opacity = '1';
+      if (!this.raf && !this.reduce) this.raf = requestAnimationFrame(this.follow);
+    };
+    this.onHeroLeave = () => { if (this.glow) this.glow.style.opacity = '0'; };
+    this.follow = () => {
+      const dx = this.target.x - this.pos.x, dy = this.target.y - this.pos.y;
+      this.pos.x += dx * 0.14; this.pos.y += dy * 0.14;
+      this.applyGlow();
+      if (Math.abs(dx) + Math.abs(dy) > 0.5) this.raf = requestAnimationFrame(this.follow); else this.raf = 0;
+    };
+    this.toggleTheme = () => this.setTheme(!this.state.dark);
+    this.setEs = () => this.setLang('es');
+    this.setEn = () => this.setLang('en');
+    this.fAllClick = () => this.setState({ filter: 'all' });
+    this.fUxClick = () => this.setState({ filter: 'ux' });
+    this.fDigClick = () => this.setState({ filter: 'digital' });
+  }
+  componentDidMount() {
+    let dark = true, lang = 'es';
+    const mi = this.props.modoInicial ?? 'auto';
+    const li = this.props.idiomaInicial ?? 'auto';
+    try { dark = mi === 'auto' ? !(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) : mi === 'dark'; } catch (e) {}
+    try { lang = li === 'auto' ? ((navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en') : li; } catch (e) {}
+    try { const s = localStorage.getItem('dg-theme'); if (s) dark = s === 'dark'; } catch (e) {}
+    try { const s = localStorage.getItem('dg-lang'); if (s === 'es' || s === 'en') lang = s; } catch (e) {}
+    try { this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { this.reduce = false; }
+    this.setState({ dark, lang });
+    // Nada seleccionado ni volteado hasta que la persona haga scroll de verdad.
+    this.userScrolled = false;
+    this.spyId = '';
+    if (window.IntersectionObserver && this.root) {
+      const ids = ['inicio', 'code', 'trabajo', 'digital', 'por-que', 'sobre-mi', 'contacto'];
+      const els = ids.map((id) => this.root.querySelector('#' + id)).filter(Boolean);
+      this.spy = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return;
+          const id = en.target.id;
+          this.spyId = (id === 'inicio' || id === 'code') ? '' : id;
+          if (this.userScrolled && this.state.active !== this.spyId) this.setState({ active: this.spyId });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      els.forEach((el) => this.spy.observe(el));
+    }
+    this.scrollTop = (e) => {
+      try { const el = e && e.target && e.target !== document ? (e.target.scrollingElement || e.target) : (document.scrollingElement || document.documentElement); return el.scrollTop || window.scrollY || 0; } catch (err) { return window.scrollY || 0; }
+    };
+    this.codeInView = () => {
+      if (!this.code) return true;
+      const r = this.code.getBoundingClientRect(); const h = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < h * 0.85 && r.bottom > 0;
+    };
+    this.engage = () => {
+      if (!this.userScrolled) { this.userScrolled = true; if (this.state.active !== this.spyId) this.setState({ active: this.spyId }); }
+      if (!this.state.flipped && this.codeInView()) this.flip();
+    };
+    this.onAnyScroll = (e) => {
+      const top = this.scrollTop(e);
+      if (top < 40) { if (this.state.active) this.setState({ active: '' }); return; }
+      this.engage();
+    };
+    this.onWheel = (e) => { if (e.deltaY > 0) this.engage(); };
+    this.onTouch = () => this.engage();
+    this.onKey = (e) => { if (['ArrowDown', 'PageDown', ' ', 'End'].indexOf(e.key) >= 0) this.engage(); };
+    document.addEventListener('scroll', this.onAnyScroll, { capture: true, passive: true });
+    window.addEventListener('wheel', this.onWheel, { passive: true });
+    window.addEventListener('touchmove', this.onTouch, { passive: true });
+    window.addEventListener('keydown', this.onKey);
+    if (window.IntersectionObserver && this.code) {
+      this.io = new IntersectionObserver((entries) => {
+        if (this.userScrolled && entries.some((en) => en.isIntersecting)) this.flip();
+      }, { threshold: 0.45 });
+      this.io.observe(this.code);
+    }
+  }
+  componentWillUnmount() {
+    this.unlistenScroll(); cancelAnimationFrame(this.raf); if (this.spy) this.spy.disconnect(); (this.vids || []).forEach((io) => io.disconnect());
+  }
+  flip() {
+    if (this.state.flipped) return;
+    if (this.io) { this.io.disconnect(); this.io = null; }
+    this.setState({ flipped: true });
+  }
+  unlistenScroll() {
+    if (this.io) { this.io.disconnect(); this.io = null; }
+    if (!this.onAnyScroll) return;
+    document.removeEventListener('scroll', this.onAnyScroll, { capture: true });
+    window.removeEventListener('wheel', this.onWheel);
+    window.removeEventListener('touchmove', this.onTouch);
+    if (this.onKey) window.removeEventListener('keydown', this.onKey);
+  }
+  setTheme(dark) { try { localStorage.setItem('dg-theme', dark ? 'dark' : 'light'); } catch (e) {} this.setState({ dark }); }
+  setLang(lang) { try { localStorage.setItem('dg-lang', lang); } catch (e) {} this.setState({ lang }); }
+  applyGlow() {
+    if (!this.glow) return;
+    this.glow.style.setProperty('--hx', this.pos.x + 'px');
+    this.glow.style.setProperty('--hy', this.pos.y + 'px');
+  }
+  renderVals() {
+    const dark = this.state.dark, es = this.state.lang === 'es', f = this.state.filter;
+    const t = dark ? {
+      bg: '#0C0C0E', bg2: '#131317', bgGlass: 'rgba(12,12,14,0.78)', glass: 'linear-gradient(135deg, rgba(48,48,56,0.62), rgba(24,24,30,0.42))', glassBorder: 'rgba(255,255,255,0.14)', glassHi: 'rgba(255,255,255,0.12)', ctaBg: '#17171C', card: '#17171C', text: '#F5F5F0', muted: '#A9A9B3',
+      line: 'rgba(255,255,255,0.11)', gridLine: 'rgba(255,255,255,0.045)', gridGlow: 'rgba(112,214,190,0.55)', 
+      pillBg: '#1D1D23', accentText: '#C47DFF', invert: '#F5F5F0', invertText: '#0C0C0E', heroText: '#F5F5F0', heroBlend: 'normal', glowOpacity: 0.9,
+      x: 0
+    } : {
+      bg: '#F7F7F2', bg2: '#EEEEE7', bgGlass: 'rgba(247,247,242,0.82)', glass: 'linear-gradient(135deg, rgba(255,255,255,0.72), rgba(225,225,230,0.5))', glassBorder: 'rgba(255,255,255,0.7)', glassHi: 'rgba(255,255,255,0.9)', ctaBg: '#FFFFFF', card: '#FFFFFF', text: '#111114', muted: '#55555F',
+      line: 'rgba(17,17,20,0.11)', gridLine: 'rgba(110,90,255,0.08)', gridGlow: 'rgba(163,26,254,0.45)', 
+      pillBg: '#E9E9E2', accentText: '#7A12C9', invert: '#111114', invertText: '#F7F7F2', heroText: '#111114', heroBlend: 'normal', glowOpacity: 0.75,
+      x: 0
+    };
+    const ES = {
+      navLabel: 'Principal', navWork: 'Trabajo', navDigital: 'Diseño Digital', navAbout: 'Sobre mí', navContact: 'Contacto', navWhy: '¿Por qué yo?',
+      whyEyebrow: '¿Por qué yo?', whyTitle: 'Tres razones. Un 1% de diferencia.',
+      why1t: 'Pienso en producto y en campaña', why1b: 'Diseño la app y también cómo se lanza: interfaces, landing pages, key visuals y piezas para redes que hablan el mismo idioma.',
+      why2t: 'Diseño que se puede construir', why2b: 'Mi 1% de código me ayuda a entender cómo se arma lo que diseño y a explicarle mis decisiones a desarrollo sin que nada se pierda en la traducción.',
+      why3t: 'Probado en terreno real', why3b: 'Fintech, gobierno y agencia: tres ritmos de trabajo distintos y el mismo cuidado por cada detalle.',
+      w1post: 'Key visual', w2label: 'Hablemos',
+      w3ak: 'Agencia', w3a: 'Campañas', w3bk: 'Gobierno', w3b: 'Plataformas', w3ck: 'Fintech', w3c: 'Productos',
+      langLabel: 'Idioma', themeLabel: dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro',
+      heroEyebrow: 'Diego Granados — Diseñador UX/UI & Digital', heroRole: 'Diseñador UX/UI & Digital', avatarAlt: 'Ilustración de Diego Granados', heroAria: '1% code',
+      heroBadge: 'Diseño en Figma. Hablo el idioma de desarrollo.',
+      heroSub: 'En UX/UI se dice que no hace falta tocar código. Yo lo veo distinto: ese 1% me ayuda a entender cómo se construye lo que diseño, explicar mis decisiones a los desarrolladores y hacer que el equipo multidisciplinario avance en la misma dirección.',
+      ctaWork: 'Ver proyectos', ctaContact: 'Hablemos', heroHint: 'Mueve el cursor y haz scroll', heroReset: 'Cubrir de nuevo',
+      pqEyebrow: '¿Por qué 1%?', pqTitle: 'El que sobresale de la fila.',
+      pqBody: 'La mayoría de diseñadores entrega pantallas. Yo entrego pantallas pensadas para construirse.',
+      pq1: 'Diseño interfaces y sistemas en Figma, del flujo al detalle visual.',
+      pq2: 'Entiendo HTML: hablo el mismo idioma que el equipo de desarrollo.',
+      pq3: 'También creo campañas: key visuals, redes sociales y piezas en movimiento.',
+      workEyebrow: 'Trabajo seleccionado', workTitle: 'Proyectos', filterLabel: 'Filtrar proyectos', fAll: 'Todo', fDig: 'Diseño Digital',
+      featured: 'Caso destacado', seeCase: 'Ver caso', seeProject: 'Ver proyecto', moreWork: 'Proyectos seleccionados', archiveTitle: 'Archivo', saas: 'Producto SaaS',
+      cadAlt: 'Landing page del Token Cadejo: hero oscuro con el texto Invierte en la leyenda',
+      cadDesc: 'Emisión pública tokenizada de Cadejo Brewing Company en DitoBanx. Concepto, key visual, landing page y campaña en redes: la leyenda hecha inversión.',
+      viceAlt: 'Pantalla de inicio de sesión de VICE Software',
+      viceDesc: 'UI para un CRM de marketing por SMS y email: Email Templates, Digital Kiosk, Subscription Forms y Loyalty Wallet.',
+      digEyebrow: 'Diseño Digital', digTitle: 'Campañas que se ven en todas partes.',
+      digBody: 'Key visuals, posts, stories y empaque para lanzamientos de DitoBanx y Cadejo.', digScroll: 'Desliza', motionTitle: 'Motion · Videos', motionHint: 'Se reproducen sin sonido · activa el audio en los controles', vidWallet: 'DitoBanx · Video de la nueva wallet (16:9)', vidStory: 'DitoBanx · Video para stories (9:16)', digFeedLabel: 'Galería de piezas de Diseño Digital',
+      photoAlt: 'Foto de Diego Granados en la playa', toolsTitle: 'Herramientas',
+      aboutEyebrow: 'Sobre mí', aboutTitle: 'Hola, soy Diego.',
+      aboutBody: 'Diseñador gráfico especializado en UX/UI y diseño digital, de San Salvador. Me apasiona crear conceptos y soluciones visuales que se adapten a lo que cada proyecto y marca necesita: desde productos financieros digitales y plataformas de gobierno, hasta campañas de lanzamiento.',
+      edu: 'Licenciatura en Diseño Gráfico — Universidad Don Bosco (2017–2022)',
+      contactEyebrow: 'Contacto', contactTitle: '¿Tienes un proyecto en mente?',
+      contactBody: 'Escríbeme y conversemos sobre tu próximo proyecto.',
+      footer: 'Diseñado en Figma. Hecho con 1% de código.'
+    };
+    const EN = {
+      navLabel: 'Main', navWork: 'Work', navDigital: 'Digital Design', navAbout: 'About', navContact: 'Contact', navWhy: 'Why me?',
+      whyEyebrow: 'Why me?', whyTitle: 'Three reasons. A 1% difference.',
+      why1t: 'I think product and campaign', why1b: 'I design the app and how it launches: interfaces, landing pages, key visuals and social pieces that speak the same language.',
+      why2t: 'Design that can be built', why2b: 'My 1% of code helps me understand how my designs get built and explain my decisions to developers without anything getting lost in translation.',
+      why3t: 'Tested in the real world', why3b: 'Fintech, government and agency: three different work rhythms and the same care for every detail.',
+      w1post: 'Key visual', w2label: 'Let’s talk',
+      w3ak: 'Agency', w3a: 'Campaigns', w3bk: 'Government', w3b: 'Platforms', w3ck: 'Fintech', w3c: 'Products',
+      langLabel: 'Language', themeLabel: dark ? 'Switch to light mode' : 'Switch to dark mode',
+      heroEyebrow: 'Diego Granados — UX/UI & Digital Designer', heroRole: 'UX/UI & Digital Designer', avatarAlt: 'Illustration of Diego Granados', heroAria: '1% code',
+      heroBadge: 'I design in Figma. I speak the dev team’s language.',
+      heroSub: 'They say UX/UI takes zero code. I see it differently: that 1% helps me understand how my designs get built, explain my decisions to developers and keep a multidisciplinary team moving in the same direction.',
+      ctaWork: 'See projects', ctaContact: 'Let’s talk', heroHint: 'Move your cursor and scroll', heroReset: 'Cover again',
+      pqEyebrow: 'Why 1%?', pqTitle: 'The one that stands out.',
+      pqBody: 'Most designers hand over screens. I hand over screens designed to be built.',
+      pq1: 'I design interfaces and systems in Figma, from flow to visual detail.',
+      pq2: 'I understand HTML: I speak the same language as the dev team.',
+      pq3: 'I also create campaigns: key visuals, social media and motion pieces.',
+      workEyebrow: 'Selected work', workTitle: 'Projects', filterLabel: 'Filter projects', fAll: 'All', fDig: 'Digital Design',
+      featured: 'Featured case', seeCase: 'View case', seeProject: 'View project', moreWork: 'Selected projects', archiveTitle: 'Archive', saas: 'SaaS product',
+      cadAlt: 'Token Cadejo landing page: dark hero with the headline Invest in the legend',
+      cadDesc: 'Cadejo Brewing Company’s tokenized public offering on DitoBanx. Concept, key visual, landing page and social campaign: the legend turned into an investment.',
+      viceAlt: 'VICE Software sign-in screen',
+      viceDesc: 'UI for an SMS and email marketing CRM: Email Templates, Digital Kiosk, Subscription Forms and Loyalty Wallet.',
+      digEyebrow: 'Digital Design', digTitle: 'Campaigns that show up everywhere.',
+      digBody: 'Key visuals, posts, stories and packaging for DitoBanx and Cadejo launches.', digScroll: 'Swipe', motionTitle: 'Motion · Videos', motionHint: 'They play muted · turn on sound in the controls', vidWallet: 'DitoBanx · New wallet video (16:9)', vidStory: 'DitoBanx · Stories video (9:16)', digFeedLabel: 'Digital Design gallery',
+      photoAlt: 'Photo of Diego Granados at the beach', toolsTitle: 'Tools',
+      aboutEyebrow: 'About', aboutTitle: 'Hi, I’m Diego.',
+      aboutBody: 'Graphic designer specialized in UX/UI and digital design, based in San Salvador. I love creating concepts and visual solutions shaped to what each project and brand needs: from digital financial products and government platforms to launch campaigns.',
+      edu: 'B.A. in Graphic Design — Universidad Don Bosco (2017–2022)',
+      contactEyebrow: 'Contact', contactTitle: 'Got a project in mind?',
+      contactBody: 'Drop me a line and let’s talk about your next project.',
+      footer: 'Designed in Figma. Built with 1% code.'
+    };
+    const c = es ? ES : EN;
+    const B = { blue: '#29C0F7', yellow: '#E9E124', purple: '#A31AFE', mint: '#70D6BE' };
+    const all = [
+      { cat: 'ux', cats: ['ux', 'digital'], img: 'assets/eeddfa3c050f4cb3c2053b0c74b4378f.jpg', href: 'Acsa.dc.html', title: 'ACSA', tag: es ? 'UX/UI + Digital' : 'UX/UI + Digital', accent: B.blue, kind: es ? 'Campaña + Landings' : 'Campaign + Landings', es: 'Campaña para redes y landings de conversión para seguro de auto (ACSACAR) y médico familiar (ACSAMED).', en: 'Social campaign and conversion landing pages for car (ACSACAR) and family health (ACSAMED) insurance.' },
+      { cat: 'ux', img: 'assets/38efb45c06e3852cf9a7c25326bedaeb.jpg', href: 'Dbxweb.dc.html', title: es ? 'DitoBanx · Sitio web' : 'DitoBanx · Website', tag: 'UX/UI', accent: B.yellow, kind: es ? 'Sitio web + Landings' : 'Website + Landings', es: 'Refresh completo del sitio web y landings para las tarjetas Mastercard y Global Mastercard.', en: 'Full website refresh and landing pages for the Mastercard and Global Mastercard cards.' },
+      { cat: 'ux', img: 'assets/0d2442fcf49ade3d2c192141e379955f.jpg', href: 'Chivo.dc.html', title: 'Qué Chivo Aquí', tag: 'UX/UI', accent: B.mint, kind: 'App', es: 'App de turismo para descubrir destinos, horarios y contactos de emergencia en El Salvador.', en: 'Tourism app to discover destinations, schedules and emergency contacts in El Salvador.' },
+      { cat: 'digital', img: 'assets/3970723be8187cedd2625f7f96551571.jpg', href: 'Dbx.dc.html', title: 'DitoBanx · Key visuals', tag: es ? 'Diseño Digital' : 'Digital Design', accent: B.yellow, kind: es ? 'Campaña · Redes' : 'Campaign · Social', es: 'Key visuals y piezas para redes: consulta médica online, multiasistencia y descarga de la app.', en: 'Key visuals and social pieces: online medical consultation, multi-assistance and app download.' },
+      { cat: 'digital', img: 'assets/e68322ef21aab4d5fcdd4c761f91ac35.jpg', href: 'Tarjeta.dc.html', title: es ? 'Tarjeta prepago DitoBanx' : 'DitoBanx prepaid card', tag: es ? 'Diseño Digital' : 'Digital Design', accent: B.purple, kind: es ? 'Empaque' : 'Packaging', es: 'Empaque de la tarjeta prepago recargable “Sin fronteras”, con instrucciones de activación.', en: 'Packaging for the “Borderless” reloadable prepaid card, with activation steps.' },
+      { cat: 'ux', img: 'assets/af0c5449e9b639a88349165ca4172f13.jpg', href: 'Sis.dc.html', title: 'SIS · Expediente médico', tag: 'UX/UI', accent: B.mint, kind: es ? 'Plataforma' : 'Platform', es: 'Historial clínico, vacunas y pruebas de laboratorio en una interfaz clara y ordenada.', en: 'Medical history, vaccines and lab tests in a clear, organized interface.' },
+      { cat: 'ux', img: 'assets/c3ea68bfeaca5f0ef3b9c6fb1a032fba.jpg', href: 'Firma.dc.html', title: 'Firma Electrónica', tag: 'UX/UI', accent: B.blue, kind: 'Web', es: 'Plataforma para firmar documentos electrónicos de forma fácil y segura.', en: 'Platform to sign electronic documents easily and securely.' },
+      { cat: 'ux', img: 'assets/64ca6a3bd15bf6bd4cf1fc94d2ca3f04.jpg', href: 'Sac.dc.html', title: es ? 'Sistema de Atención Ciudadana' : 'Citizen Service System', tag: 'UX/UI', accent: B.purple, kind: 'Web', es: 'Ingreso y seguimiento de casos en línea, desde cualquier dispositivo.', en: 'Online case submission and tracking, from any device.' },
+      { cat: 'ux', img: 'assets/50ba413f8abd60ec518148b8e6a84d36.jpg', href: 'Esit.dc.html', title: 'ESIT', tag: 'UX/UI', accent: B.yellow, kind: 'Web', es: 'Sitio web de la Escuela Superior de Innovación y Tecnología.', en: 'Website for the Higher School of Innovation and Technology.' },
+      { cat: 'ux', img: 'assets/7d5cf782273333b1e43c7eeabb2b44bd.jpg', href: 'Viajeros.dc.html', title: 'ViajeroSV', tag: 'UX/UI', accent: B.blue, kind: 'Web', es: 'Rediseño de una plataforma de cupones turísticos en El Salvador.', en: 'Redesign of a tourism coupon platform in El Salvador.' },
+      { cat: 'ux', img: 'assets/de932d1223fe243a551937ae350485b1.jpg', href: 'Nasakem.dc.html', title: 'Nasakem', tag: 'UX/UI', accent: B.mint, kind: 'Landing page', es: 'Landing page con nuevo key visual para un descongestivo nasal.', en: 'Landing page with a new key visual for a nasal decongestant.' },
+      { cat: 'ux', img: 'assets/c33d784c19f7020f085fe5c501adb39f.jpg', href: 'Oxma.dc.html', title: 'OXMA', tag: 'UX/UI', accent: B.yellow, kind: 'Landing page', es: 'Actualización de la landing de producto para mostrarlo con más claridad.', en: 'Product landing page update to present it more clearly.' }
+    ];
+    const projects = all.filter((p) => f === 'all' || p.cat === f || (p.cats && p.cats.indexOf(f) >= 0)).map((p, i) => {
+      const both = p.cats && p.cats.length > 1;
+      const accent = both ? B.purple : p.cat === 'digital' ? B.yellow : B.blue;
+      const tag = both ? 'UX/UI + Digital' : p.cat === 'digital' ? (es ? 'Diseño Digital' : 'Digital Design') : 'UX/UI';
+      return { img: p.img, href: p.href, title: p.title, tag, kind: p.kind, accent,
+        num: String(i + 1).padStart(2, '0'), desc: es ? p.es : p.en, alt: p.title };
+    });
+    const topProjects = projects.slice(0, 6);
+    const archive = projects.slice(6);
+    const projCount = topProjects.length + ' / ' + projects.length;
+    const archiveCount = archive.length + (es ? ' proyectos' : ' projects');
+    const pill = (on) => on ? { bg: t.text, color: t.bg, border: t.text } : { bg: 'transparent', color: t.text, border: t.line };
+    const feed = [
+      { img: 'assets/b5a5b7a8a45730c94ef186e258d006fb.jpg', cap: 'Cadejo · Post 4:5', shadow: B.yellow },
+      { img: 'assets/2964b3a246418bc2bb616080bf5af071.jpg', cap: 'DitoBanx · Story', shadow: B.blue },
+      { img: 'assets/9ba2819d2bdd2d24ed65e661c149d86d.jpg', cap: 'DitoBanx · Post 1:1', shadow: B.mint },
+      { img: 'assets/34a22319a53abdf0fc9be93831cbbc59.jpg', cap: 'DitoBanx · Story', shadow: B.purple },
+      { img: 'assets/96038462e0751e662c889db87d5de366.jpg', cap: 'DitoBanx · Post 1:1', shadow: B.yellow },
+      { img: 'assets/0563c0f9ac7439e9876d8e22c17d96d3.jpg', cap: 'Cadejo · Story 9:16', shadow: B.blue },
+      { img: 'assets/56b48f3a704e512ffaf608291fd13d1f.jpg', cap: 'DitoBanx · Post 1:1', shadow: B.mint },
+      { img: 'assets/268fbc583a7c78522dc02f4a7b6136d6.jpg', cap: 'DitoBanx · Story', shadow: B.purple }
+    ].map((x) => ({ ...x, alt: x.cap }));
+    const tools = ['Figma', 'Adobe XD', 'Illustrator', 'Photoshop', 'After Effects', 'Premiere', 'HTML'].map((name) => ({ name }));
+    const jobs = es ? [
+      { when: '2025 — hoy', org: 'DitoBanx', role: 'Diseñador Gráfico UX & UI · productos financieros digitales' },
+      { when: '2022 — 2024', org: 'Secretaría de Innovación de la Presidencia', role: 'Diseñador UX & UI · interfaces móvil y escritorio' },
+      { when: '2021 — 2022', org: 'OPRES Media', role: 'Diseñador Gráfico · campañas, redes, branding y landing pages' },
+      { when: '2019', org: 'O&R McCann', role: 'Pasantía en diseño gráfico publicitario' },
+      { when: '2018 — 2020', org: 'Freelance', role: 'Branding e identidad para diferentes marcas' }
+    ] : [
+      { when: '2025 — now', org: 'DitoBanx', role: 'UX & UI Graphic Designer · digital financial products' },
+      { when: '2022 — 2024', org: 'Presidential Innovation Secretariat', role: 'UX & UI Designer · mobile and desktop interfaces' },
+      { when: '2021 — 2022', org: 'OPRES Media', role: 'Graphic Designer · campaigns, social, branding and landing pages' },
+      { when: '2019', org: 'O&R McCann', role: 'Advertising graphic design internship' },
+      { when: '2018 — 2020', org: 'Freelance', role: 'Branding and identity for several brands' }
+    ];
+    return {
+      t, c, projects, topProjects, archive, hasArchive: archive.length > 0, archiveCount, projCount, feed, tools, jobs, yes: true, videoRef: this.videoRef,
+      nav: ['trabajo', 'digital', 'porque', 'sobre', 'contacto'].reduce((o, k) => {
+        const id = { trabajo: 'trabajo', digital: 'digital', porque: 'por-que', sobre: 'sobre-mi', contacto: 'contacto' }[k];
+        const on = this.state.active === id;
+        o[k] = { current: on ? 'true' : 'false', glow: on ? 0.85 : 0, scale: on ? 1 : 0.6, bar: on ? 1 : 0, weight: on ? 600 : 500 };
+        return o;
+      }, {}),
+      isDark: dark, isLight: !dark, isEs: es, isEn: !es,
+      esBg: es ? t.text : 'transparent', esColor: es ? t.bg : t.text,
+      enBg: !es ? t.text : 'transparent', enColor: !es ? t.bg : t.text,
+      fAll: f === 'all', fUx: f === 'ux', fDig: f === 'digital',
+      pAll: pill(f === 'all'), pUx: pill(f === 'ux'), pDig: pill(f === 'digital'),
+      showVice: f !== 'digital',
+      zero: this.state.flipped ? { transform: 'translateY(-45%)', opacity: 0, filter: 'blur(6px)' } : { transform: 'translateY(0)', opacity: 1, filter: 'blur(0px)' },
+      one: this.state.flipped ? { transform: 'translateY(0)', opacity: 1, filter: 'blur(0px)' } : { transform: 'translateY(45%)', opacity: 0, filter: 'blur(6px)' },
+      badge: this.state.flipped ? { opacity: 1, transform: 'translateY(0)' } : { opacity: 0, transform: 'translateY(8px)' },
+      badgeText: c.heroBadge,
+      setRoot: this.setRoot, setHero: this.setHero, setGlow: this.setGlow, setCode: this.setCode,
+      onRootMove: this.onRootMove, onHeroMove: this.onHeroMove, onHeroLeave: this.onHeroLeave,
+      toggleTheme: this.toggleTheme, setEs: this.setEs, setEn: this.setEn,
+      fAllClick: this.fAllClick, fUxClick: this.fUxClick, fDigClick: this.fDigClick
+    };
+  }
+}
+</script>
+</body>
+</html>

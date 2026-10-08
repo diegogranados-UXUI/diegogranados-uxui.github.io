@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Cadejo — Caso</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+html{scroll-behavior:smooth}
+a{color:inherit}a:hover{color:inherit}
+.dg-btn{transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 200ms ease}
+.dg-btn:active{transform:scale(0.97)}
+.dg-btn:focus-visible,.dg-card:focus-visible,.dg-scroll:focus-visible{outline:3px solid #29C0F7;outline-offset:3px}
+.dg-card .dg-img{transition:transform 400ms cubic-bezier(0.23,1,0.32,1)}
+.dg-card:hover .dg-img{transform:scale(1.035)}
+.dg-card .dg-arrow{transition:transform 250ms cubic-bezier(0.23,1,0.32,1)}
+.dg-card:hover .dg-arrow{transform:translate(4px,-4px)}
+@media (prefers-reduced-motion: reduce){.dg-card .dg-img{transition:none}html{scroll-behavior:auto}}
+</style>
+</helmet>
+<div ref="{{setRoot}}" onPointerMove="{{onRootMove}}" style="position: relative; min-height: 100vh; background: {{t.bg}}; color: {{t.text}}; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.6; transition: background-color 250ms ease, color 250ms ease; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, {{t.gridLine}} 1px, transparent 1px), linear-gradient(to bottom, {{t.gridLine}} 1px, transparent 1px); background-size: 48px 48px"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, {{t.gridGlow}} 1px, transparent 1px), linear-gradient(to bottom, {{t.gridGlow}} 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(240px circle at var(--gx, -999px) var(--gy, -999px), #000 0%, transparent 75%); mask-image: radial-gradient(240px circle at var(--gx, -999px) var(--gy, -999px), #000 0%, transparent 75%)"></div>
+
+<header style="position: fixed; top: 14px; left: 0; right: 0; z-index: 50; padding: 0 16px; pointer-events: none">
+<div style="pointer-events: auto; max-width: 1240px; margin: 0 auto; padding: 10px 14px 10px 20px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; border-radius: 28px; background: {{t.glass}}; backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); border: 1px solid {{t.glassBorder}}; box-shadow: inset 0 1px 0 {{t.glassHi}}, inset 0 -1px 0 rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.14)">
+<a href="index.html" class="dg-btn" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; font-weight: 600">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>{{c.back}}</a>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.02em">DIEGO GRANADOS</span>
+<div style="display: flex; align-items: center; gap: 10px">
+<div role="group" aria-label="{{c.langLabel}}" style="display: flex; padding: 3px; border-radius: 999px; background: {{t.pillBg}}; border: 1px solid {{t.line}}">
+<button type="button" class="dg-btn" onClick="{{setEs}}" aria-pressed="{{isEs}}" style="min-width: 44px; height: 38px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13px 'JetBrains Mono', monospace; background: {{esBg}}; color: {{esColor}}">ES</button>
+<button type="button" class="dg-btn" onClick="{{setEn}}" aria-pressed="{{isEn}}" style="min-width: 44px; height: 38px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13px 'JetBrains Mono', monospace; background: {{enBg}}; color: {{enColor}}">EN</button>
+</div>
+<button type="button" class="dg-btn" onClick="{{toggleTheme}}" aria-label="{{c.themeLabel}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid {{t.line}}; background: {{t.pillBg}}; color: {{t.text}}; cursor: pointer; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{isDark}}" hint-placeholder-val="{{true}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{isLight}}" hint-placeholder-val="{{false}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+</sc-if>
+</button>
+</div>
+</div>
+</header>
+
+<main style="position: relative; z-index: 1">
+<section style="padding: 128px 24px 56px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="padding: 5px 12px; border-radius: 999px; background: #E9E124; color: #111114; font: 600 12px 'JetBrains Mono', monospace">{{c.featured}}</span>
+<span style="padding: 5px 12px; border-radius: 999px; border: 1px solid {{t.line}}; font: 500 12px 'JetBrains Mono', monospace">UX/UI + {{c.digital}}</span>
+</div>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(64px, 10vw, 150px); line-height: 0.88; letter-spacing: -0.045em">Token Cadejo</h1>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; color: {{t.muted}}; max-width: 900px">{{c.tagline}}</p>
+<dl style="margin: 20px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-top: 1px solid {{t.line}}">
+<div style="padding: 20px 20px 20px 0; border-bottom: 1px solid {{t.line}}"><dt style="font: 500 12px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: {{t.muted}}">{{c.mClient}}</dt><dd style="margin: 6px 0 0; font-weight: 600">DitoBanx × Cadejo Brewing Co.</dd></div>
+<div style="padding: 20px 20px 20px 0; border-bottom: 1px solid {{t.line}}"><dt style="font: 500 12px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: {{t.muted}}">{{c.mRole}}</dt><dd style="margin: 6px 0 0; font-weight: 600">{{c.vRole}}</dd></div>
+<div style="padding: 20px 20px 20px 0; border-bottom: 1px solid {{t.line}}"><dt style="font: 500 12px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: {{t.muted}}">{{c.mDeliv}}</dt><dd style="margin: 6px 0 0; font-weight: 600">{{c.vDeliv}}</dd></div>
+</dl>
+</div>
+</section>
+
+<section style="padding: 0 24px 100px">
+<div style="max-width: 1240px; margin: 0 auto; border-radius: 28px; overflow: hidden; border: 2px solid #000; box-shadow: 10px 10px 0 #F99C0C; background: #101015">
+<img src="assets/e94ed5903bed815cf2e11c987fe28ecd.jpg" alt="{{c.heroAlt}}" style="width: 100%; height: auto; display: block">
+</div>
+</section>
+
+<section aria-labelledby="reto" style="padding: 0 24px 100px">
+<div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px 64px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">01 — {{c.retoEyebrow}}</p>
+<h2 id="reto" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -0.03em">{{c.retoTitle}}</h2>
+<p style="margin: 0; color: {{t.muted}}">{{c.retoBody}}</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">02 — {{c.conceptEyebrow}}</p>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -0.03em">{{c.conceptTitle}}</h2>
+<p style="margin: 0; color: {{t.muted}}">{{c.conceptBody}}</p>
+<ul aria-label="{{c.paletteLabel}}" style="margin: 10px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 12px">
+<li style="display: flex; align-items: center; gap: 10px; font: 500 13px 'JetBrains Mono', monospace"><span style="width: 36px; height: 36px; border-radius: 10px; background: #101015; border: 2px solid {{t.swatchBorder}}"></span>#101015</li>
+<li style="display: flex; align-items: center; gap: 10px; font: 500 13px 'JetBrains Mono', monospace"><span style="width: 36px; height: 36px; border-radius: 10px; background: #E5E5E5; border: 2px solid {{t.swatchBorder}}"></span>#E5E5E5</li>
+<li style="display: flex; align-items: center; gap: 10px; font: 500 13px 'JetBrains Mono', monospace"><span style="width: 36px; height: 36px; border-radius: 10px; background: #F99C0C; border: 2px solid {{t.swatchBorder}}"></span>#F99C0C</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="landing" style="padding: 100px 24px; background: {{t.bg2}}; border-top: 1px solid {{t.line}}; border-bottom: 1px solid {{t.line}}">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
+<div style="flex: 1 1 520px; min-width: 0; border-radius: 18px; overflow: hidden; border: 2px solid #000; background: #FFFFFF; box-shadow: 8px 8px 0 #29C0F7">
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: #EDEDED; border-bottom: 1px solid #D4D4D4">
+<span style="width: 12px; height: 12px; border-radius: 50%; background: #FF5F57"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #FEBC2E"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: #28C840"></span>
+<span style="margin-left: 12px; flex: 1; padding: 4px 12px; border-radius: 8px; background: #FFFFFF; color: #55555F; font: 500 12px 'JetBrains Mono', monospace">ditobanx · token-cadejo</span>
+</div>
+<div class="dg-scroll" tabindex="0" aria-label="{{c.scrollLabel}}" style="height: 720px; overflow-y: auto; background: #101015">
+<img src="assets/899b1857fba817b7a47b72de462b4a33.jpg" alt="{{c.fullAlt}}" style="width: 100%; height: auto; display: block">
+</div>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">03 — Landing page</p>
+<h2 id="landing" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -0.03em">{{c.landingTitle}}</h2>
+<p style="margin: 0; color: {{t.muted}}">{{c.landingBody}}</p>
+<ol style="margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid {{t.line}}">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+<li style="display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid {{t.line}}">
+<span style="flex: 0 0 auto; width: 32px; height: 32px; border-radius: 8px; background: {{s.color}}; color: #111114; border: 2px solid #000; display: flex; align-items: center; justify-content: center; font: 600 13px 'JetBrains Mono', monospace">{{s.n}}</span>
+<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-weight: 600">{{s.title}}</strong><span style="color: {{t.muted}}; font-size: 15px">{{s.body}}</span></span>
+</li>
+</sc-for>
+</ol>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="secciones" style="padding: 100px 24px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px">
+<h2 id="secciones" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -0.03em">{{c.detailTitle}}</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<img src="assets/dda39b4c231b8d5c18c97b82f55b7b47.jpg" alt="{{c.d1}}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000">
+<figcaption style="font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{c.d1}}</figcaption>
+</figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<img src="assets/1af27902308acf666839cbc7fe997c7a.jpg" alt="{{c.d3}}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000">
+<figcaption style="font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{c.d3}}</figcaption>
+</figure>
+</div>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<img src="assets/61192a35343d4f97f0d413f8c8b28814.jpg" alt="{{c.d2}}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 20px; border: 2px solid #000">
+<figcaption style="font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{c.d2}}</figcaption>
+</figure>
+</div>
+</section>
+
+<section aria-labelledby="campana" style="padding: 100px 24px; background: #101015; color: #F5F5F0">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: #F99C0C">04 — {{c.campEyebrow}}</p>
+<h2 id="campana" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -0.03em">{{c.campTitle}}</h2>
+<p style="margin: 0; color: #C9C9CF">{{c.campBody}}</p>
+</div>
+<div style="flex: 1 1 560px; min-width: 0; display: flex; gap: 24px; align-items: flex-end; justify-content: center; flex-wrap: wrap">
+<figure style="margin: 0; flex: 1 1 260px; max-width: 380px; display: flex; flex-direction: column; gap: 10px">
+<img src="assets/b5a5b7a8a45730c94ef186e258d006fb.jpg" alt="{{c.postAlt}}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000; box-shadow: 8px 8px 0 #F99C0C">
+<figcaption style="font: 500 12px 'JetBrains Mono', monospace; color: #A9A9B3">Feed · 1080×1350</figcaption>
+</figure>
+<figure style="margin: 0; flex: 1 1 200px; max-width: 290px; display: flex; flex-direction: column; gap: 10px">
+<img src="assets/0563c0f9ac7439e9876d8e22c17d96d3.jpg" alt="{{c.storyAlt}}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000; box-shadow: 8px 8px 0 #E5E5E5">
+<figcaption style="font: 500 12px 'JetBrains Mono', monospace; color: #A9A9B3">Story · 1080×1920</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<section style="padding: 0 24px 100px">
+<a href="Vice.dc.html" class="dg-card" style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; text-decoration: none; border-radius: 28px; overflow: hidden; background: {{t.card}}; color: {{t.text}}; border: 2px solid #000; box-shadow: 8px 8px 0 #70D6BE">
+<div style="flex: 1 1 380px; min-width: 0; padding: 36px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 12px">
+<span style="font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">{{c.next}}</span>
+<span style="display: flex; align-items: center; gap: 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 3.4vw, 46px); line-height: 1; letter-spacing: -0.03em">VICE Software<svg class="dg-arrow" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+</div>
+<div style="flex: 1 1 460px; min-width: 0; overflow: hidden; aspect-ratio: 1440 / 860">
+<img class="dg-img" src="assets/174b07b3a84976567047515d6a3d06cb.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block">
+</div>
+</a>
+</section>
+</main>
+
+<footer style="position: relative; z-index: 1; border-top: 1px solid {{t.line}}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">
+<span>© 2026 Diego Granados</span>
+<a href="index.html" style="text-decoration: none">{{c.back}}</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5200}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { dark: true, lang: 'es' };
+    this.root = null;
+    this.setRoot = (el) => { this.root = el; };
+    this.onRootMove = (e) => {
+      if (!this.root) return;
+      const r = this.root.getBoundingClientRect();
+      this.root.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+      this.root.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+    };
+    this.toggleTheme = () => { const dark = !this.state.dark; try { localStorage.setItem('dg-theme', dark ? 'dark' : 'light'); } catch (e) {} this.setState({ dark }); };
+    this.setEs = () => { try { localStorage.setItem('dg-lang', 'es'); } catch (e) {} this.setState({ lang: 'es' }); };
+    this.setEn = () => { try { localStorage.setItem('dg-lang', 'en'); } catch (e) {} this.setState({ lang: 'en' }); };
+  }
+  componentDidMount() {
+    let dark = true, lang = 'es';
+    try { dark = !(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches); } catch (e) {}
+    try { lang = (navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en'; } catch (e) {}
+    try { const s = localStorage.getItem('dg-theme'); if (s) dark = s === 'dark'; } catch (e) {}
+    try { const s = localStorage.getItem('dg-lang'); if (s === 'es' || s === 'en') lang = s; } catch (e) {}
+    this.setState({ dark, lang });
+  }
+  renderVals() {
+    const dark = this.state.dark, es = this.state.lang === 'es';
+    const t = dark ? {
+      bg: '#0C0C0E', bg2: '#131317', bgGlass: 'rgba(12,12,14,0.78)', glass: 'linear-gradient(135deg, rgba(48,48,56,0.62), rgba(24,24,30,0.42))', glassBorder: 'rgba(255,255,255,0.14)', glassHi: 'rgba(255,255,255,0.12)', card: '#17171C', text: '#F5F5F0', muted: '#A9A9B3',
+      line: 'rgba(255,255,255,0.11)', gridLine: 'rgba(255,255,255,0.045)', gridGlow: 'rgba(112,214,190,0.55)',
+      pillBg: '#1D1D23', accentText: '#C47DFF', swatchBorder: '#3A3A42', dash: 'rgba(255,255,255,0.28)'
+    } : {
+      bg: '#F7F7F2', bg2: '#EEEEE7', bgGlass: 'rgba(247,247,242,0.82)', glass: 'linear-gradient(135deg, rgba(255,255,255,0.72), rgba(225,225,230,0.5))', glassBorder: 'rgba(255,255,255,0.7)', glassHi: 'rgba(255,255,255,0.9)', card: '#FFFFFF', text: '#111114', muted: '#55555F',
+      line: 'rgba(17,17,20,0.11)', gridLine: 'rgba(110,90,255,0.08)', gridGlow: 'rgba(163,26,254,0.45)',
+      pillBg: '#E9E9E2', accentText: '#7A12C9', swatchBorder: '#111114', dash: 'rgba(17,17,20,0.3)'
+    };
+    const c = es ? {
+      back: 'Volver al inicio', langLabel: 'Idioma', themeLabel: dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro',
+      featured: 'Caso destacado', digital: 'Diseño Digital', tagline: 'La leyenda hecha inversión: concepto, landing page y campaña para la primera emisión pública tokenizada de una cervecera salvadoreña.',
+      mClient: 'Cliente', mRole: 'Rol', vRole: 'Diseño UX/UI y Diseño Digital', mDeliv: 'Entregables', vDeliv: 'Landing page, key visual, posts y stories', mYear: 'Año', vYear: 'AÑO',
+      heroAlt: 'Hero de la landing: Invierte en la leyenda, con la ilustración del cadejo sobre fondo negro',
+      retoEyebrow: 'El reto', retoTitle: 'Explicar un token a quien conoce la cerveza.',
+      retoBody: 'Cadejo Brewing Company lanzó su primera emisión pública tokenizada y DitoBanx participó como plataforma de comercialización (PSAD) y custodio. El reto era presentar un activo digital nuevo de forma clara y confiable, sin perder el carácter de una marca cervecera emblemática de El Salvador.',
+      conceptEyebrow: 'El concepto', conceptTitle: 'La leyenda hecha inversión.',
+      conceptBody: 'El cadejo — la leyenda salvadoreña que da nombre a la marca — se convierte en moneda. Blanco y negro con textura de papel, monedas plateadas con el lobo y el ámbar de la cerveza como único color de acento.',
+      paletteLabel: 'Paleta del proyecto',
+      scrollLabel: 'Landing completa, desplázate para verla', fullAlt: 'Landing page completa del Token Cadejo',
+      landingTitle: 'Una landing que guía del interés a la compra.', landingBody: 'Cada sección responde una pregunta del inversionista, en el orden en que aparece.',
+      detailTitle: 'Detalle de secciones',
+      d1: 'La leyenda hecha inversión: tres beneficios clave en tarjetas', d2: '¿Por qué invertir? La app, las monedas y cuatro pilares de confianza', d3: 'Manual de instrucciones descargable para comprar el token',
+      campEyebrow: 'La campaña', campTitle: 'Del key visual a las redes.', campBody: 'El mismo concepto se adapta a feed y stories: titular naranja, el vaso de Cadejo al centro y las monedas en movimiento. Firma conjunta de DitoBanx, Accelerate y Cadejo.',
+      postAlt: 'Post 4:5 La leyenda hecha inversión con vaso de cerveza Cadejo y monedas', storyAlt: 'Story 9:16 La leyenda hecha inversión',
+      resEyebrow: 'Resultados', resTitle: 'Impacto', res1: 'Dato de impacto por confirmar', res2: 'Dato de impacto por confirmar', res3: 'Dato de impacto por confirmar',
+      next: 'Siguiente caso'
+    } : {
+      back: 'Back to home', langLabel: 'Language', themeLabel: dark ? 'Switch to light mode' : 'Switch to dark mode',
+      featured: 'Featured case', digital: 'Digital Design', tagline: 'The legend turned into an investment: concept, landing page and campaign for a Salvadoran brewery’s first tokenized public offering.',
+      mClient: 'Client', mRole: 'Role', vRole: 'UX/UI and Digital Design', mDeliv: 'Deliverables', vDeliv: 'Landing page, key visual, posts and stories', mYear: 'Year', vYear: 'YEAR',
+      heroAlt: 'Landing hero: Invest in the legend, with the cadejo illustration on black',
+      retoEyebrow: 'The challenge', retoTitle: 'Explaining a token to people who know beer.',
+      retoBody: 'Cadejo Brewing Company launched its first tokenized public offering, with DitoBanx as the distribution platform (PSAD) and custodian. The challenge was to present a new digital asset in a clear, trustworthy way without losing the character of one of El Salvador’s most iconic beer brands.',
+      conceptEyebrow: 'The concept', conceptTitle: 'The legend turned into an investment.',
+      conceptBody: 'The cadejo — the Salvadoran legend behind the brand’s name — becomes a coin. Black and white with paper texture, silver coins with the wolf, and beer amber as the only accent color.',
+      paletteLabel: 'Project palette',
+      scrollLabel: 'Full landing page, scroll to explore', fullAlt: 'Full Token Cadejo landing page',
+      landingTitle: 'A landing page that leads from interest to purchase.', landingBody: 'Each section answers an investor question, in the order it comes up.',
+      detailTitle: 'Section details',
+      d1: 'The legend turned into an investment: three key benefits as cards', d2: 'Why invest? The app, the coins and four pillars of trust', d3: 'Downloadable instruction manual to buy the token',
+      campEyebrow: 'The campaign', campTitle: 'From key visual to social.', campBody: 'The same concept adapts to feed and stories: orange headline, the Cadejo glass at the center and coins in motion. Co-signed by DitoBanx, Accelerate and Cadejo.',
+      postAlt: '4:5 post The legend turned into an investment with a Cadejo beer glass and coins', storyAlt: '9:16 story The legend turned into an investment',
+      resEyebrow: 'Results', resTitle: 'Impact', res1: 'Impact metric to be confirmed', res2: 'Impact metric to be confirmed', res3: 'Impact metric to be confirmed',
+      next: 'Next case'
+    };
+    const steps = (es ? [
+      ['Invierte en la leyenda', 'Hero oscuro con la ilustración del cadejo y una sola acción: comprar el token.'],
+      ['La leyenda hecha inversión', 'Qué es Cadejo y por qué importa: cerveza artesanal, expansión regional y tokens con utilidad real.'],
+      ['¿Por qué invertir?', 'La app de DitoBanx en contexto y cuatro pilares: respaldo, valor de marca, modelo transparente y utilidad.'],
+      ['Manual de instrucciones', 'Guía descargable: registro, verificación de identidad y compra del token.'],
+      ['Preguntas frecuentes', 'Acordeón para resolver dudas sin salir de la página.']
+    ] : [
+      ['Invest in the legend', 'Dark hero with the cadejo illustration and a single action: buy the token.'],
+      ['The legend turned into an investment', 'What Cadejo is and why it matters: craft beer, regional expansion and tokens with real utility.'],
+      ['Why invest?', 'The DitoBanx app in context and four pillars: backing, brand value, transparent model and utility.'],
+      ['Instruction manual', 'Downloadable guide: sign-up, identity verification and token purchase.'],
+      ['FAQ', 'An accordion to answer questions without leaving the page.']
+    ]).map((s, i) => ({ n: '0' + (i + 1), title: s[0], body: s[1], color: ['#29C0F7', '#E9E124', '#70D6BE', '#F99C0C', '#E5E5E5'][i] }));
+    return {
+      t, c, steps,
+      isDark: dark, isLight: !dark, isEs: es, isEn: !es,
+      esBg: es ? t.text : 'transparent', esColor: es ? t.bg : t.text,
+      enBg: !es ? t.text : 'transparent', enColor: !es ? t.bg : t.text,
+      setRoot: this.setRoot, onRootMove: this.onRootMove, toggleTheme: this.toggleTheme, setEs: this.setEs, setEn: this.setEn
+    };
+  }
+}
+</script>
+</body>
+</html>

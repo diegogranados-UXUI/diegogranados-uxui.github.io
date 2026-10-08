@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VICE Software — Caso</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+.dg-btn{transition:transform 160ms cubic-bezier(0.23,1,0.32,1),background-color 200ms ease,color 200ms ease,box-shadow 200ms ease}
+.dg-btn:active{transform:scale(0.97)}
+.dg-btn:focus-visible,.dg-card:focus-visible,.dg-in:focus-visible{outline:3px solid #29C0F7;outline-offset:3px}
+.dg-card .dg-img{transition:transform 400ms cubic-bezier(0.23,1,0.32,1)}
+.dg-card:hover .dg-img{transform:scale(1.035)}
+.dg-card .dg-arrow{transition:transform 250ms cubic-bezier(0.23,1,0.32,1)}
+.dg-card:hover .dg-arrow{transform:translate(4px,-4px)}
+.dg-device{transition:width 380ms cubic-bezier(0.23,1,0.32,1)}
+.dg-key:hover{background:#EEF0F3}
+@media (prefers-reduced-motion: reduce){.dg-card .dg-img,.dg-device{transition:none}}
+</style>
+</helmet>
+<div ref="{{setRoot}}" onPointerMove="{{onRootMove}}" style="position: relative; min-height: 100vh; background: {{t.bg}}; color: {{t.text}}; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.6; transition: background-color 250ms ease, color 250ms ease; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, {{t.gridLine}} 1px, transparent 1px), linear-gradient(to bottom, {{t.gridLine}} 1px, transparent 1px); background-size: 48px 48px"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, {{t.gridGlow}} 1px, transparent 1px), linear-gradient(to bottom, {{t.gridGlow}} 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(240px circle at var(--gx, -999px) var(--gy, -999px), #000 0%, transparent 75%); mask-image: radial-gradient(240px circle at var(--gx, -999px) var(--gy, -999px), #000 0%, transparent 75%)"></div>
+
+<header style="position: fixed; top: 14px; left: 0; right: 0; z-index: 50; padding: 0 16px; pointer-events: none">
+<div style="pointer-events: auto; max-width: 1240px; margin: 0 auto; padding: 10px 14px 10px 20px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; border-radius: 28px; background: {{t.glass}}; backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); border: 1px solid {{t.glassBorder}}; box-shadow: inset 0 1px 0 {{t.glassHi}}, inset 0 -1px 0 rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.14)">
+<a href="index.html" class="dg-btn" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; font-weight: 600">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>{{c.back}}</a>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.02em">DIEGO GRANADOS</span>
+<div style="display: flex; align-items: center; gap: 10px">
+<div role="group" aria-label="{{c.langLabel}}" style="display: flex; padding: 3px; border-radius: 999px; background: {{t.pillBg}}; border: 1px solid {{t.line}}">
+<button type="button" class="dg-btn" onClick="{{setEs}}" aria-pressed="{{isEs}}" style="min-width: 44px; height: 38px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13px 'JetBrains Mono', monospace; background: {{esBg}}; color: {{esColor}}">ES</button>
+<button type="button" class="dg-btn" onClick="{{setEn}}" aria-pressed="{{isEn}}" style="min-width: 44px; height: 38px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13px 'JetBrains Mono', monospace; background: {{enBg}}; color: {{enColor}}">EN</button>
+</div>
+<button type="button" class="dg-btn" onClick="{{toggleTheme}}" aria-label="{{c.themeLabel}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid {{t.line}}; background: {{t.pillBg}}; color: {{t.text}}; cursor: pointer; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{isDark}}" hint-placeholder-val="{{true}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{isLight}}" hint-placeholder-val="{{false}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+</sc-if>
+</button>
+</div>
+</div>
+</header>
+
+<main style="position: relative; z-index: 1">
+<section style="padding: 128px 24px 56px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="padding: 5px 12px; border-radius: 999px; background: #70D6BE; color: #111114; font: 600 12px 'JetBrains Mono', monospace">UX/UI · {{c.saas}}</span>
+</div>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(64px, 10vw, 150px); line-height: 0.88; letter-spacing: -0.045em">VICE Software</h1>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; font-size: clamp(26px, 3vw, 40px); line-height: 1.15; color: {{t.muted}}; max-width: 920px">{{c.tagline}}</p>
+<dl style="margin: 20px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; border-top: 1px solid {{t.line}}">
+<div style="padding: 20px 20px 20px 0; border-bottom: 1px solid {{t.line}}"><dt style="font: 500 12px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: {{t.muted}}">{{c.mProduct}}</dt><dd style="margin: 6px 0 0; font-weight: 600">{{c.vProduct}}</dd></div>
+<div style="padding: 20px 20px 20px 0; border-bottom: 1px solid {{t.line}}"><dt style="font: 500 12px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: {{t.muted}}">{{c.mRole}}</dt><dd style="margin: 6px 0 0; font-weight: 600">{{c.vRole}}</dd></div>
+<div style="padding: 20px 20px 20px 0; border-bottom: 1px solid {{t.line}}"><dt style="font: 500 12px 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: {{t.muted}}">{{c.mScope}}</dt><dd style="margin: 6px 0 0; font-weight: 600">Email templates · Digital Kiosk · Subscription Forms · Loyalty Wallet</dd></div>
+</dl>
+</div>
+</section>
+
+<section style="padding: 0 24px 100px">
+<div style="max-width: 1240px; margin: 0 auto; border-radius: 24px; overflow: hidden; border: 2px solid #000; box-shadow: 10px 10px 0 #70D6BE; background: #FFFFFF">
+<img src="assets/174b07b3a84976567047515d6a3d06cb.jpg" alt="{{c.coverAlt}}" style="width: 100%; height: auto; display: block">
+</div>
+</section>
+
+<section aria-labelledby="pantallas" style="padding: 100px 24px; background: {{t.bg2}}; border-top: 1px solid {{t.line}}; border-bottom: 1px solid {{t.line}}">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px 64px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">01 — {{c.scrEyebrow}}</p>
+<h2 id="pantallas" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -0.03em">{{c.scrTitle}}</h2>
+</div>
+<p style="margin: 0; color: {{t.muted}}; align-self: end">{{c.scrBody}}</p>
+</div>
+<h3 style="margin: 16px 0 0; display: flex; align-items: center; gap: 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.02em"><span style="width: 14px; height: 14px; border-radius: 4px; background: #70D6BE; border: 2px solid #000"></span>Email Templates</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 32px 28px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px"><img src="assets/254bfaedde42b576d27a1d1e24806d60.jpg" alt="{{c.e1}}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000"><figcaption style="display: flex; flex-direction: column; gap: 2px"><strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px">{{c.e1}}</strong><span style="color: {{t.muted}}; font-size: 15px">{{c.e1c}}</span></figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px"><img src="assets/3e5879a650bc0dd55d838f499173cf4f.jpg" alt="{{c.e2}}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000"><figcaption style="display: flex; flex-direction: column; gap: 2px"><strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px">{{c.e2}}</strong><span style="color: {{t.muted}}; font-size: 15px">{{c.e2c}}</span></figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px"><img src="assets/118c15a7de09ae009d67fd47013bfb27.jpg" alt="{{c.e3}}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000"><figcaption style="display: flex; flex-direction: column; gap: 2px"><strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px">{{c.e3}}</strong><span style="color: {{t.muted}}; font-size: 15px">{{c.e3c}}</span></figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px"><img src="assets/0e73507130d5779dfa0ee56cee14d154.jpg" alt="{{c.e4}}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000"><figcaption style="display: flex; flex-direction: column; gap: 2px"><strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px">{{c.e4}}</strong><span style="color: {{t.muted}}; font-size: 15px">{{c.e4c}}</span></figcaption></figure>
+</div>
+<h3 style="margin: 16px 0 0; display: flex; align-items: center; gap: 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.02em"><span style="width: 14px; height: 14px; border-radius: 4px; background: #29C0F7; border: 2px solid #000"></span>Sign-up Forms</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 32px 28px">
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px"><img src="assets/80d3c291b2d6b399b1a2171443bd2bf2.jpg" alt="Digital Kiosk" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000"><figcaption style="display: flex; flex-direction: column; gap: 2px"><strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px">Digital Kiosk</strong><span style="color: {{t.muted}}; font-size: 15px">{{c.kioskCap}}</span></figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px"><img src="assets/6b2379e3ef3826d2c25d661980d75d83.jpg" alt="Subscription Forms" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000"><figcaption style="display: flex; flex-direction: column; gap: 2px"><strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px">Subscription Forms</strong><span style="color: {{t.muted}}; font-size: 15px">{{c.formsCap}}</span></figcaption></figure>
+<figure style="margin: 0; display: flex; flex-direction: column; gap: 12px"><img src="assets/8ba3903d13fc53e2751b1a7c071e48ae.jpg" alt="Loyalty Wallet" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 16px; border: 2px solid #000"><figcaption style="display: flex; flex-direction: column; gap: 2px"><strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px">Loyalty Wallet</strong><span style="color: {{t.muted}}; font-size: 15px">{{c.walletCap}}</span></figcaption></figure>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="demo" style="padding: 100px 24px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 760px">
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 10px; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}"><span style="padding: 3px 8px; border-radius: 6px; background: #A31AFE; color: #FFFFFF; letter-spacing: 0">&lt;/&gt;</span>02 — {{c.demoEyebrow}}</p>
+<h2 id="demo" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -0.03em">{{c.demoTitle}}</h2>
+<p style="margin: 0; color: {{t.muted}}">{{c.demoBody}}</p>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; border-radius: 24px; overflow: hidden; border: 2px solid #000; background: #FFFFFF; color: #1E293B; box-shadow: 10px 10px 0 #A31AFE">
+<div style="flex: 1 1 300px; min-width: 0; max-width: 100%; padding: 28px; box-sizing: border-box; border-right: 1px solid #E5E7EB; display: flex; flex-direction: column; gap: 22px; background: #FFFFFF">
+<div role="tablist" aria-label="{{c.productLabel}}" style="display: flex; flex-wrap: wrap; gap: 6px; padding: 4px; border-radius: 12px; background: #F3F4F6">
+<sc-for list="{{products}}" as="p" hint-placeholder-count="3">
+<button type="button" role="tab" aria-selected="{{p.on}}" class="dg-btn" onClick="{{p.pick}}" style="flex: 1 1 auto; min-height: 40px; padding: 0 12px; border: 0; border-radius: 9px; cursor: pointer; font: 600 13px 'Instrument Sans', sans-serif; background: {{p.bg}}; color: {{p.color}}; box-shadow: {{p.shadow}}">{{p.label}}</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="demo-title" style="font-size: 14px; font-weight: 600">{{c.fTitle}}</label>
+<input id="demo-title" class="dg-in" type="text" value="{{titleInput}}" placeholder="{{titlePh}}" onInput="{{onTitle}}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #D1D5DB; font: 400 15px 'Instrument Sans', sans-serif; color: #1E293B; background: #FFFFFF">
+</div>
+<fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 10px">
+<legend style="font-size: 14px; font-weight: 600; margin-bottom: 10px">{{c.fColor}}</legend>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{swatches}}" as="s" hint-placeholder-count="5">
+<button type="button" class="dg-btn" onClick="{{s.pick}}" aria-label="{{s.label}}" aria-pressed="{{s.on}}" style="width: 44px; height: 44px; border-radius: 12px; cursor: pointer; background: {{s.hex}}; border: 2px solid #FFFFFF; box-shadow: {{s.ring}}"></button>
+</sc-for>
+</div>
+<span style="font: 500 13px 'JetBrains Mono', monospace; color: #475569">{{color}}</span>
+</fieldset>
+<fieldset style="margin: 0; padding: 0; border: 0">
+<legend style="font-size: 14px; font-weight: 600; margin-bottom: 10px">{{c.fDevice}}</legend>
+<div style="display: flex; gap: 8px">
+<sc-for list="{{devices}}" as="d" hint-placeholder-count="3">
+<button type="button" class="dg-btn" onClick="{{d.pick}}" aria-pressed="{{d.on}}" style="flex: 1; min-height: 44px; border-radius: 10px; cursor: pointer; font: 600 13px 'Instrument Sans', sans-serif; border: 1.5px solid {{d.border}}; background: {{d.bg}}; color: {{d.color}}">{{d.label}}</button>
+</sc-for>
+</div>
+</fieldset>
+<sc-if value="{{isWallet}}" hint-placeholder-val="{{false}}">
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; font-size: 14px; font-weight: 600; cursor: pointer">{{c.f2fa}}
+<input type="checkbox" checked="{{twoFa}}" onChange="{{onTwoFa}}" style="width: 22px; height: 22px; accent-color: #22A07A; cursor: pointer">
+</label>
+</sc-if>
+</div>
+
+<div style="flex: 3 1 520px; min-width: 0; padding: 32px; box-sizing: border-box; background: #F3F4F6; display: flex; justify-content: center; align-items: flex-start; min-height: 640px">
+<div class="dg-device" style="width: {{deviceW}}; max-width: 100%; background: #FFFFFF; border-radius: 18px; box-shadow: 0 1px 2px rgba(15,23,42,0.06), 0 12px 32px rgba(15,23,42,0.10); padding: 36px 28px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+<div aria-hidden="true" style="width: 84px; height: 84px; border-radius: 50%; background: {{tint}}; display: flex; align-items: center; justify-content: center; color: {{color}}">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7l2-3h4l2 3"></path><circle cx="12" cy="13.5" r="3.5"></circle></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<strong style="font-size: 22px; line-height: 1.2; color: #1E293B">{{title}}</strong>
+<span style="font-size: 15px; color: #475569">{{subtitle}}</span>
+</div>
+
+<sc-if value="{{isKiosk}}" hint-placeholder-val="{{true}}">
+<div style="width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 14px">
+<output aria-live="polite" style="display: flex; align-items: center; justify-content: center; min-height: 48px; border-bottom: 2px solid #CBD5E1; font: 600 22px 'JetBrains Mono', monospace; letter-spacing: 0.06em; color: #1E293B">{{phoneShown}}</output>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="12">
+<button type="button" class="dg-key" onClick="{{k.press}}" aria-label="{{k.aria}}" style="min-height: 48px; border: 0; border-radius: 10px; background: #FFFFFF; cursor: pointer; font: 600 20px 'Instrument Sans', sans-serif; color: #1E293B">{{k.label}}</button>
+</sc-for>
+</div>
+<button type="button" class="dg-btn" style="min-height: 50px; border: 0; border-radius: 999px; background: {{color}}; color: {{onColor}}; font: 600 16px 'Instrument Sans', sans-serif; cursor: pointer">Check in</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isForms}}" hint-placeholder-val="{{false}}">
+<form style="width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: 12px; text-align: left">
+<label for="pv-first" style="font-size: 13px; font-weight: 600; color: #334155">First name *</label>
+<input id="pv-first" type="text" placeholder="Enter first name" style="min-height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid #D1D5DB; font: 400 15px 'Instrument Sans', sans-serif">
+<label for="pv-last" style="font-size: 13px; font-weight: 600; color: #334155">Last name *</label>
+<input id="pv-last" type="text" placeholder="Enter last name" style="min-height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid #D1D5DB; font: 400 15px 'Instrument Sans', sans-serif">
+<label for="pv-phone" style="font-size: 13px; font-weight: 600; color: #334155">Phone *</label>
+<input id="pv-phone" type="tel" placeholder="(000) 000 0000" style="min-height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid #D1D5DB; font: 400 15px 'Instrument Sans', sans-serif">
+<button type="button" class="dg-btn" style="margin-top: 8px; min-height: 50px; border: 0; border-radius: 999px; background: {{color}}; color: {{onColor}}; font: 600 16px 'Instrument Sans', sans-serif; cursor: pointer">Subscribe</button>
+</form>
+</sc-if>
+
+<sc-if value="{{isWallet}}" hint-placeholder-val="{{false}}">
+<div style="width: 100%; max-width: 340px; display: flex; flex-direction: column; gap: 12px; text-align: left">
+<label for="pv-wphone" style="font-size: 13px; font-weight: 600; color: #334155">Enter your phone number</label>
+<div style="display: flex; gap: 8px">
+<span style="min-height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid #D1D5DB; display: flex; align-items: center; font-size: 14px">US</span>
+<input id="pv-wphone" type="tel" placeholder="(772) 918 8124" style="flex: 1; min-width: 0; min-height: 44px; padding: 0 12px; border-radius: 8px; border: 1px solid #D1D5DB; font: 400 15px 'Instrument Sans', sans-serif">
+</div>
+<sc-if value="{{twoFa}}" hint-placeholder-val="{{true}}">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #475569"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>{{c.twoFaNote}}</span>
+</sc-if>
+<button type="button" class="dg-btn" style="margin-top: 8px; min-height: 50px; border: 0; border-radius: 999px; background: {{color}}; color: {{onColor}}; font: 600 16px 'Instrument Sans', sans-serif; cursor: pointer">Next</button>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="padding: 0 24px 100px">
+<a href="Cadejo.dc.html" class="dg-card" style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; text-decoration: none; border-radius: 28px; overflow: hidden; background: #101015; color: #F5F5F0; border: 2px solid #000; box-shadow: 8px 8px 0 #F99C0C">
+<div style="flex: 1 1 380px; min-width: 0; padding: 36px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 12px">
+<span style="font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: #A9A9B3">{{c.next}}</span>
+<span style="display: flex; align-items: center; gap: 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 3.4vw, 46px); line-height: 1; letter-spacing: -0.03em">Token Cadejo<svg class="dg-arrow" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg></span>
+</div>
+<div style="flex: 1 1 460px; min-width: 0; overflow: hidden; aspect-ratio: 954 / 612">
+<img class="dg-img" src="assets/e94ed5903bed815cf2e11c987fe28ecd.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block">
+</div>
+</a>
+</section>
+</main>
+
+<footer style="position: relative; z-index: 1; border-top: 1px solid {{t.line}}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">
+<span>© 2026 Diego Granados</span>
+<a href="index.html" style="text-decoration: none">{{c.back}}</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { dark: true, lang: 'es', product: 'kiosk', color: '#2563EB', device: 'desktop', title: '', phone: '', twoFa: true };
+    this.root = null;
+    this.setRoot = (el) => { this.root = el; };
+    this.onRootMove = (e) => {
+      if (!this.root) return;
+      const r = this.root.getBoundingClientRect();
+      this.root.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+      this.root.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+    };
+    this.toggleTheme = () => { const dark = !this.state.dark; try { localStorage.setItem('dg-theme', dark ? 'dark' : 'light'); } catch (e) {} this.setState({ dark }); };
+    this.setEs = () => { try { localStorage.setItem('dg-lang', 'es'); } catch (e) {} this.setState({ lang: 'es' }); };
+    this.setEn = () => { try { localStorage.setItem('dg-lang', 'en'); } catch (e) {} this.setState({ lang: 'en' }); };
+    this.onTitle = (e) => this.setState({ title: e.target.value });
+    this.onTwoFa = (e) => this.setState({ twoFa: e.target.checked });
+  }
+  componentDidMount() {
+    let dark = true, lang = 'es';
+    try { dark = !(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches); } catch (e) {}
+    try { lang = (navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en'; } catch (e) {}
+    try { const s = localStorage.getItem('dg-theme'); if (s) dark = s === 'dark'; } catch (e) {}
+    try { const s = localStorage.getItem('dg-lang'); if (s === 'es' || s === 'en') lang = s; } catch (e) {}
+    this.setState({ dark, lang });
+  }
+  renderVals() {
+    const dark = this.state.dark, es = this.state.lang === 'es', st = this.state;
+    const t = dark ? {
+      bg: '#0C0C0E', bg2: '#131317', bgGlass: 'rgba(12,12,14,0.78)', glass: 'linear-gradient(135deg, rgba(48,48,56,0.62), rgba(24,24,30,0.42))', glassBorder: 'rgba(255,255,255,0.14)', glassHi: 'rgba(255,255,255,0.12)', card: '#17171C', text: '#F5F5F0', muted: '#A9A9B3',
+      line: 'rgba(255,255,255,0.11)', gridLine: 'rgba(255,255,255,0.045)', gridGlow: 'rgba(112,214,190,0.55)', pillBg: '#1D1D23', accentText: '#C47DFF'
+    } : {
+      bg: '#F7F7F2', bg2: '#EEEEE7', bgGlass: 'rgba(247,247,242,0.82)', glass: 'linear-gradient(135deg, rgba(255,255,255,0.72), rgba(225,225,230,0.5))', glassBorder: 'rgba(255,255,255,0.7)', glassHi: 'rgba(255,255,255,0.9)', card: '#FFFFFF', text: '#111114', muted: '#55555F',
+      line: 'rgba(17,17,20,0.11)', gridLine: 'rgba(110,90,255,0.08)', gridGlow: 'rgba(163,26,254,0.45)', pillBg: '#E9E9E2', accentText: '#7A12C9'
+    };
+    const c = es ? {
+      back: 'Volver al inicio', langLabel: 'Idioma', themeLabel: dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro', saas: 'Producto SaaS',
+      tagline: 'UI para un CRM de marketing por SMS y email: plantillas de email, kiosko digital, formularios de suscripción y wallet de lealtad.',
+      mProduct: 'Producto', vProduct: 'CRM de marketing (SaaS)', mRole: 'Rol', vRole: 'Diseño UI', mScope: 'Secciones', mYear: 'Año', vYear: 'AÑO',
+      coverAlt: 'Pantalla de inicio de sesión de VICE Software: Text Messaging & Email Marketing built for regulated industries',
+      scrEyebrow: 'Pantallas', scrTitle: 'Las secciones que diseñé.',
+      scrBody: 'Email Templates (librería, edición y creación de plantillas) y Sign-up Forms (Digital Kiosk, Subscription Forms y Loyalty Wallet), con panel de personalización y vista previa en escritorio, tablet y móvil.',
+      e1: 'Librería · vista en cuadrícula', e1c: 'Plantillas de VICE y propias, con búsqueda y filtros por tipo, temporada y layout.',
+      e2: 'Librería · vista en lista', e2c: 'La misma librería en tabla, con acciones rápidas para editar, duplicar o eliminar.',
+      e3: 'Editar plantilla', e3c: 'Editor visual por bloques con vista previa en escritorio y móvil.',
+      e4: 'Crear desde cero', e4c: 'Lienzo vacío para armar una plantilla arrastrando columnas, texto, imágenes, botones o HTML.',
+      kioskCap: 'Check-in con teclado numérico para unirse al club de mensajes de texto.', formsCap: 'Formularios de suscripción con título, campos y botón personalizables.', walletCap: 'Acceso a la wallet de lealtad con 2FA y filtro de edad.',
+      demoEyebrow: 'Demo en vivo', demoTitle: 'Pruébalo: este constructor es HTML real.',
+      demoBody: 'Recreé el constructor en código para mostrar mi 1%. Cambia el producto, el título, el color o el dispositivo y mira cómo responde la vista previa.',
+      productLabel: 'Producto', fTitle: 'Título', fColor: 'Color del botón', fDevice: 'Dispositivo', f2fa: 'Usar código 2FA', twoFaNote: 'Te enviaremos un código de verificación',
+      next: 'Siguiente caso'
+    } : {
+      back: 'Back to home', langLabel: 'Language', themeLabel: dark ? 'Switch to light mode' : 'Switch to dark mode', saas: 'SaaS product',
+      tagline: 'UI for an SMS and email marketing CRM: email templates, digital kiosk, subscription forms and loyalty wallet.',
+      mProduct: 'Product', vProduct: 'Marketing CRM (SaaS)', mRole: 'Role', vRole: 'UI Design', mScope: 'Sections', mYear: 'Year', vYear: 'YEAR',
+      coverAlt: 'VICE Software sign-in screen: Text Messaging & Email Marketing built for regulated industries',
+      scrEyebrow: 'Screens', scrTitle: 'The sections I designed.',
+      scrBody: 'Email Templates (library, editing and building templates) and Sign-up Forms (Digital Kiosk, Subscription Forms and Loyalty Wallet), with a customization panel and desktop, tablet and mobile preview.',
+      e1: 'Library · grid view', e1c: 'VICE and custom templates, with search and filters by type, season and layout.',
+      e2: 'Library · list view', e2c: 'The same library as a table, with quick actions to edit, duplicate or delete.',
+      e3: 'Edit template', e3c: 'Block-based visual editor with desktop and mobile preview.',
+      e4: 'Build from scratch', e4c: 'Empty canvas to build a template by dragging columns, text, images, buttons or HTML.',
+      kioskCap: 'Check-in with a number pad to join the text club.', formsCap: 'Subscription forms with customizable title, fields and button.', walletCap: 'Loyalty wallet access with 2FA and an age gate.',
+      demoEyebrow: 'Live demo', demoTitle: 'Try it: this builder is real HTML.',
+      demoBody: 'I rebuilt the builder in code to show my 1%. Change the product, title, color or device and watch the preview respond.',
+      productLabel: 'Product', fTitle: 'Title', fColor: 'Button color', fDevice: 'Device', f2fa: 'Use 2FA code', twoFaNote: 'We will send you a verification code',
+      next: 'Next case'
+    };
+    const P = { kiosk: { label: 'Digital Kiosk', title: 'Enter your mobile number', sub: 'Join our Text Club' }, forms: { label: 'Subscription Forms', title: 'Sign up to our Text Club', sub: 'Become a Text Club member' }, wallet: { label: 'Loyalty Wallet', title: 'Your loyalty wallet', sub: 'Sign in to see your rewards' } };
+    const products = ['kiosk', 'forms', 'wallet'].map((id) => {
+      const on = st.product === id;
+      return { label: P[id].label, on, bg: on ? '#FFFFFF' : 'transparent', color: on ? '#1E293B' : '#475569', shadow: on ? '0 1px 3px rgba(15,23,42,0.15)' : 'none', pick: () => this.setState({ product: id, title: '' }) };
+    });
+    const sw = [['#2563EB', es ? 'Azul' : 'Blue'], ['#22A07A', es ? 'Verde' : 'Green'], ['#A31AFE', es ? 'Morado' : 'Purple'], ['#111114', es ? 'Negro' : 'Black'], ['#F99C0C', es ? 'Naranja' : 'Orange']];
+    const swatches = sw.map((s) => { const on = st.color === s[0]; return { hex: s[0], label: s[1], on, ring: on ? '0 0 0 2px #1E293B' : '0 0 0 1px #D1D5DB', pick: () => this.setState({ color: s[0] }) }; });
+    const D = { desktop: ['100%', es ? 'Escritorio' : 'Desktop'], tablet: ['520px', 'Tablet'], mobile: ['340px', es ? 'Móvil' : 'Mobile'] };
+    const devices = ['desktop', 'tablet', 'mobile'].map((id) => { const on = st.device === id; return { label: D[id][1], on, bg: on ? '#1E293B' : '#FFFFFF', color: on ? '#FFFFFF' : '#1E293B', border: on ? '#1E293B' : '#D1D5DB', pick: () => this.setState({ device: id }) }; });
+    const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', '⌫'].map((k) => ({
+      label: k, aria: k === '⌫' ? (es ? 'Borrar' : 'Delete') : (k === '' ? (es ? 'Vacío' : 'Empty') : k),
+      press: () => {
+        if (k === '') return;
+        if (k === '⌫') this.setState({ phone: st.phone.slice(0, -1) });
+        else if (st.phone.length < 10) this.setState({ phone: st.phone + k });
+      }
+    }));
+    const d = st.phone;
+    const phoneShown = d.length === 0 ? '(___) ___ ____' : ('(' + d.slice(0, 3) + (d.length > 3 ? ') ' + d.slice(3, 6) : '') + (d.length > 6 ? ' ' + d.slice(6) : ''));
+    const prod = P[st.product];
+    const hex = st.color;
+    const rgb = [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16)];
+    return {
+      t, c, products, swatches, devices, keys, phoneShown,
+      title: st.title || prod.title, subtitle: prod.sub,
+      titleInput: st.title, titlePh: prod.title,
+      color: hex, onColor: hex === '#F99C0C' ? '#111114' : '#FFFFFF', tint: 'rgba(' + rgb.join(',') + ',0.12)',
+      deviceW: D[st.device][0],
+      isKiosk: st.product === 'kiosk', isForms: st.product === 'forms', isWallet: st.product === 'wallet', twoFa: st.twoFa,
+      onTitle: this.onTitle, onTwoFa: this.onTwoFa,
+      isDark: dark, isLight: !dark, isEs: es, isEn: !es,
+      esBg: es ? t.text : 'transparent', esColor: es ? t.bg : t.text,
+      enBg: !es ? t.text : 'transparent', enColor: !es ? t.bg : t.text,
+      setRoot: this.setRoot, onRootMove: this.onRootMove, toggleTheme: this.toggleTheme, setEs: this.setEs, setEn: this.setEn
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proyecto — Diego Granados</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>body{margin:0}</style>
+</helmet>
+<div ref="{{setRoot}}" onPointerMove="{{onRootMove}}" style="position: relative; min-height: 100vh; background: {{t.bg}}; color: {{t.text}}; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.6; transition: background-color 250ms ease, color 250ms ease; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, {{t.gridLine}} 1px, transparent 1px), linear-gradient(to bottom, {{t.gridLine}} 1px, transparent 1px); background-size: 48px 48px"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(to right, {{t.gridGlow}} 1px, transparent 1px), linear-gradient(to bottom, {{t.gridGlow}} 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(240px circle at var(--gx, -999px) var(--gy, -999px), #000 0%, transparent 75%); mask-image: radial-gradient(240px circle at var(--gx, -999px) var(--gy, -999px), #000 0%, transparent 75%)"></div>
+
+<header style="position: fixed; top: 14px; left: 0; right: 0; z-index: 50; padding: 0 16px; pointer-events: none">
+<div style="pointer-events: auto; max-width: 1240px; margin: 0 auto; padding: 10px 14px 10px 20px; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; border-radius: 28px; background: {{t.glass}}; backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%); border: 1px solid {{t.glassBorder}}; box-shadow: inset 0 1px 0 {{t.glassHi}}, inset 0 -1px 0 rgba(0,0,0,0.04), 0 12px 32px rgba(0,0,0,0.14)">
+<a href="index.html" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; font-weight: 600; color: {{t.text}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>{{c.back}}</a>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.02em">DIEGO GRANADOS</span>
+<div style="display: flex; align-items: center; gap: 10px">
+<div role="group" aria-label="{{c.langLabel}}" style="display: flex; padding: 3px; border-radius: 999px; background: {{t.pillBg}}; border: 1px solid {{t.line}}">
+<button type="button" onClick="{{setEs}}" aria-pressed="{{isEs}}" style="min-width: 44px; height: 38px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13px 'JetBrains Mono', monospace; background: {{esBg}}; color: {{esColor}}">ES</button>
+<button type="button" onClick="{{setEn}}" aria-pressed="{{isEn}}" style="min-width: 44px; height: 38px; border: 0; border-radius: 999px; cursor: pointer; font: 600 13px 'JetBrains Mono', monospace; background: {{enBg}}; color: {{enColor}}">EN</button>
+</div>
+<button type="button" onClick="{{toggleTheme}}" aria-label="{{c.themeLabel}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid {{t.line}}; background: {{t.pillBg}}; color: {{t.text}}; cursor: pointer; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{isDark}}" hint-placeholder-val="{{true}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{isLight}}" hint-placeholder-val="{{false}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+</sc-if>
+</button>
+</div>
+</div>
+</header>
+
+<main style="position: relative; z-index: 1">
+<section style="padding: 128px 24px 48px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="padding: 5px 12px; border-radius: 999px; background: {{p.tagBg}}; color: {{p.tagInk}}; font: 600 12px 'JetBrains Mono', monospace">{{p.tag}}</span>
+<span style="padding: 5px 12px; border-radius: 999px; border: 1px solid {{t.line}}; font: 500 12px 'JetBrains Mono', monospace">{{p.kind}}</span>
+</div>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(56px, 9vw, 140px); line-height: 0.9; letter-spacing: -0.045em">{{p.name}}</h1>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; font-size: clamp(24px, 2.8vw, 36px); line-height: 1.2; color: {{t.muted}}; max-width: 900px">{{p.tagline}}</p>
+</div>
+</section>
+
+<section aria-label="{{c.mockLabel}}" style="padding: 0 24px 100px">
+<div style="max-width: 1240px; margin: 0 auto; border-radius: 32px; border: 2px solid #000; background: {{t.stage}}; box-shadow: 10px 10px 0 {{p.accent}}; padding: clamp(28px, 4vw, 56px) clamp(16px, 4vw, 48px); box-sizing: border-box; overflow: hidden">
+
+<sc-if value="{{p.isLaptop}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 28px">
+<sc-if value="{{p.multiLap}}" hint-placeholder-val="{{false}}">
+<div role="tablist" aria-label="{{c.viewsLabel}}" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; padding: 5px; border-radius: 999px; background: {{t.pillBg}}; border: 1px solid {{t.line}}">
+<sc-for list="{{p.laptops}}" as="tb" hint-placeholder-count="3">
+<button type="button" role="tab" aria-selected="{{tb.on}}" onClick="{{tb.pick}}" style="min-height: 42px; padding: 0 18px; border: 0; border-radius: 999px; cursor: pointer; font: 600 14px 'Instrument Sans', sans-serif; background: {{tb.tabBg}}; color: {{tb.tabInk}}; box-shadow: {{tb.tabShadow}}; transition: background-color 200ms ease, color 200ms ease">{{tb.cap}}</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-for list="{{p.laptops}}" as="l" hint-placeholder-count="1">
+<sc-if value="{{l.on}}" hint-placeholder-val="{{true}}">
+<figure onMouseEnter="{{l.pause}}" onMouseLeave="{{l.play}}" style="margin: 0; width: 100%; max-width: 760px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 18px">
+<div style="position: relative; width: 100%; aspect-ratio: 919 / 524; filter: drop-shadow(0 26px 30px rgba(0,0,0,0.22))">
+<div style="position: absolute; top: 5.85%; right: 12.35%; bottom: 10.8%; left: 12.35%; overflow: hidden; background: #FFFFFF">
+<img ref="{{l.ref}}" src="{{l.img}}" alt="{{l.cap}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block">
+</div>
+<img src="assets/d0886ed23a26ab99d0af8a8026576236.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none">
+</div>
+<figcaption style="font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{l.cap}}</figcaption>
+</figure>
+</sc-if>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{p.isPhones}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 40px">
+<div style="position: relative; width: 260px; aspect-ratio: 218 / 433; filter: drop-shadow(0 30px 40px rgba(0,0,0,0.28))">
+<div style="position: absolute; top: 2.709%; right: 6.694%; bottom: 2.752%; left: 6.61%; border-radius: 12.7% / 5.87%; overflow: hidden; background: #000">
+<sc-for list="{{p.cycle}}" as="s" hint-placeholder-count="4">
+<img ref="{{s.ref}}" src="{{s.img}}" alt="{{s.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: {{s.op}}">
+</sc-for>
+</div>
+<img src="assets/0184558e0379d2485bf720c1368beff7.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none">
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{p.isFlip}}" hint-placeholder-val="{{false}}">
+<div onMouseEnter="{{p.flipPause}}" onMouseLeave="{{p.flipPlay}}" style="max-width: 600px; margin: 0 auto; perspective: 1800px">
+<div ref="{{p.flipRef}}" style="position: relative; aspect-ratio: 16 / 9; transform-style: preserve-3d">
+<img src="{{p.front}}" alt="{{p.frontAlt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 16px; background: #FFFFFF">
+<img src="{{p.back}}" alt="{{p.backAlt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(180deg); border-radius: 16px; background: #FFFFFF">
+</div>
+</div>
+</sc-if>
+
+<p style="margin: 28px 0 0; text-align: center; font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{p.mockHint}}</p>
+</div>
+</section>
+
+<sc-if value="{{p.hasVideos}}" hint-placeholder-val="{{false}}">
+<section aria-label="{{c.videosTitle}}" style="padding: 0 24px 100px">
+<div style="max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">{{c.videosTitle}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+<sc-for list="{{p.videos}}" as="v" hint-placeholder-count="2">
+<figure style="margin: 0; flex: {{v.flex}}; max-width: {{v.max}}; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<video ref="{{videoRef}}" src="{{v.src}}" poster="{{v.poster}}" controls="{{yes}}" preload="metadata" aria-label="{{v.cap}}" style="width: 100%; aspect-ratio: {{v.ratio}}; display: block; border-radius: 18px; border: 2px solid #000; background: #F2F2F2; box-shadow: 8px 8px 0 {{v.shadow}}; object-fit: cover"></video>
+<figcaption style="font: 500 12px 'JetBrains Mono', monospace; color: {{t.muted}}">{{v.cap}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{p.hasCampaign}}" hint-placeholder-val="{{false}}">
+<section aria-label="{{c.campaignTitle}}" style="padding: 0 24px 100px">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">{{c.campaignTitle}}</p>
+<p style="margin: 0; color: {{t.muted}}; max-width: 720px">{{p.campaignText}}</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end">
+<sc-for list="{{p.campaign}}" as="k" hint-placeholder-count="4">
+<figure style="margin: 0; flex: 0 1 auto; display: flex; flex-direction: column; gap: 10px">
+<img src="{{k.img}}" alt="{{k.cap}}" loading="lazy" style="height: 340px; width: auto; max-width: 100%; display: block; border-radius: 14px; border: 2px solid #000; box-shadow: 6px 6px 0 {{k.shadow}}">
+<figcaption style="font: 500 12px 'JetBrains Mono', monospace; color: {{t.muted}}">{{k.cap}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</div>
+</section>
+</sc-if>
+
+<section style="padding: 0 24px 100px">
+<div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 28px">
+<div style="border-radius: 24px; border: 1px solid {{t.line}}; background: {{t.card}}; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">01 — {{c.brandTitle}}</p>
+<div style="height: 140px; border-radius: 16px; background: #FFFFFF; border: 1px solid rgba(17,17,20,0.08); display: flex; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box">
+<img src="{{p.logo}}" alt="{{p.logoAlt}}" style="max-width: 100%; max-height: 100%; width: auto; height: auto; display: block">
+</div>
+<p style="margin: 0">{{p.brand}}</p>
+</div>
+<div style="border-radius: 24px; border: 1px solid {{t.line}}; background: {{t.card}}; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">02 — {{c.workTitle}}</p>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.25; letter-spacing: -0.01em">{{p.work}}</p>
+<sc-if value="{{p.hasPrograms}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 12px; margin-top: auto; padding-top: 12px; border-top: 1px solid {{t.line}}">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">{{c.programsTitle}}</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{p.programs}}" as="g" hint-placeholder-count="3">
+<li style="display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 999px; border: 1px solid {{t.line}}; background: {{t.bg}}; font-weight: 600; font-size: 15px">
+<span aria-hidden="true" style="width: 34px; height: 34px; border-radius: 50%; border: 2px solid #000; background: {{g.bg}}; color: {{g.ink}}; display: flex; align-items: center; justify-content: center; font: 800 13px 'Bricolage Grotesque', sans-serif">{{g.abbr}}</span>{{g.name}}</li>
+</sc-for>
+</ul>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+
+<sc-if value="{{p.hasPages}}" hint-placeholder-val="{{true}}">
+<section aria-labelledby="pantallas" style="padding: 100px 24px; background: {{t.bg2}}; border-top: 1px solid {{t.line}}; border-bottom: 1px solid {{t.line}}">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.accentText}}">03 — {{c.screensEyebrow}}</p>
+<h2 id="pantallas" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 3.6vw, 50px); line-height: 1; letter-spacing: -0.03em">{{c.screensTitle}}</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, {{p.pageMin}}), 1fr)); max-width: 1040px; width: 100%; margin: 0 auto; gap: 32px 28px">
+<sc-for list="{{p.pages}}" as="pg" hint-placeholder-count="3">
+<figure onMouseEnter="{{pg.pause}}" onMouseLeave="{{pg.play}}" style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<div style="border-radius: 14px; overflow: hidden; border: 2px solid #000; background: #FFFFFF; box-shadow: 6px 6px 0 {{pg.shadow}}">
+<sc-if value="{{pg.chrome}}" hint-placeholder-val="{{true}}">
+<div aria-hidden="true" style="display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #EDEDED; border-bottom: 1px solid #D4D4D4"><span style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F57"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #FEBC2E"></span><span style="width: 10px; height: 10px; border-radius: 50%; background: #28C840"></span></div>
+</sc-if>
+<div style="position: relative; aspect-ratio: {{pg.ratio}}; overflow: hidden">
+<img ref="{{pg.ref}}" src="{{pg.img}}" alt="{{pg.cap}}" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; display: block">
+</div>
+</div>
+<figcaption style="font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">{{pg.cap}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</div>
+</section>
+</sc-if>
+
+<section style="padding: 100px 24px">
+<a href="{{p.nextHref}}" style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; text-decoration: none; color: {{t.text}}; border-radius: 28px; border: 2px solid #000; background: {{t.card}}; padding: 36px 40px; box-shadow: 8px 8px 0 #70D6BE">
+<span style="display: flex; flex-direction: column; gap: 6px">
+<span style="font: 600 13px 'JetBrains Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; color: {{t.muted}}">{{c.next}}</span>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 3.4vw, 46px); line-height: 1; letter-spacing: -0.03em">{{p.nextName}}</span>
+</span>
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+</a>
+</section>
+</main>
+
+<footer style="position: relative; z-index: 1; border-top: 1px solid {{t.line}}">
+<div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font: 500 13px 'JetBrains Mono', monospace; color: {{t.muted}}">
+<span>© 2026 Diego Granados</span>
+<a href="index.html" style="text-decoration: none; color: {{t.muted}}">{{c.back}}</a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"pid":{"editor":"enum","options":["acsa","dbx","dbxweb","chivo","tarjeta","firma","sis","esit","sac","viajeros","nasakem","oxma"],"default":"acsa"},"$preview":{"width":1440,"height":4600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { dark: true, lang: 'es', lap: 0 };
+    this.root = null; this.groups = {};
+    this.setRoot = (el) => { this.root = el; };
+    this.onRootMove = (e) => {
+      if (!this.root) return;
+      const r = this.root.getBoundingClientRect();
+      this.root.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+      this.root.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+    };
+    this.toggleTheme = () => { const dark = !this.state.dark; try { localStorage.setItem('dg-theme', dark ? 'dark' : 'light'); } catch (e) {} this.setState({ dark }); };
+    this.setEs = () => { try { localStorage.setItem('dg-lang', 'es'); } catch (e) {} this.setState({ lang: 'es' }); };
+    this.setEn = () => { try { localStorage.setItem('dg-lang', 'en'); } catch (e) {} this.setState({ lang: 'en' }); };
+    this.cache = {};
+    this.videoRef = (el) => {
+      if (!el || el.__dg) return; el.__dg = 1;
+      el.muted = true; el.loop = true; el.playsInline = true; el.setAttribute('playsinline', '');
+      if (this.reduce) return;
+      if (window.IntersectionObserver) {
+        const io = new IntersectionObserver((en) => { en.forEach((x) => { if (x.isIntersecting) { const pr = el.play(); if (pr && pr.catch) pr.catch(() => {}); } else el.pause(); }); }, { threshold: 0.3 });
+        io.observe(el); (this.vids = this.vids || []).push(io);
+      }
+    };
+  }
+  componentDidMount() {
+    let dark = true, lang = 'es';
+    try { dark = !(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches); } catch (e) {}
+    try { lang = (navigator.language || 'es').toLowerCase().indexOf('es') === 0 ? 'es' : 'en'; } catch (e) {}
+    try { const s = localStorage.getItem('dg-theme'); if (s) dark = s === 'dark'; } catch (e) {}
+    try { const s = localStorage.getItem('dg-lang'); if (s === 'es' || s === 'en') lang = s; } catch (e) {}
+    try { this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { this.reduce = false; }
+    this.setState({ dark, lang });
+  }
+  componentWillUnmount() {
+    Object.keys(this.groups).forEach((k) => this.groups[k].forEach((a) => { try { a.cancel(); } catch (e) {} }));
+  }
+  pickLap(i) {
+    const k = 'pick' + i;
+    if (!this.cache[k]) this.cache[k] = () => this.setState({ lap: i });
+    return this.cache[k];
+  }
+  add(group, a) { (this.groups[group] = this.groups[group] || []).push(a); }
+  ctl(group) {
+    if (!this.cache['c' + group]) this.cache['c' + group] = {
+      pause: () => (this.groups[group] || []).forEach((a) => a.pause()),
+      play: () => (this.groups[group] || []).forEach((a) => a.play())
+    };
+    return this.cache['c' + group];
+  }
+  panRef(group, dur) {
+    const k = 'p' + group;
+    if (!this.cache[k]) this.cache[k] = (el) => {
+      if (!el || el.__dg || !el.animate) return; el.__dg = 1;
+      const fig = el.closest ? el.closest('figure') : null;
+      if (fig && fig.animate) fig.animate([{ opacity: 0, transform: 'translateY(10px)', filter: 'blur(4px)' }, { opacity: 1, transform: 'none', filter: 'blur(0px)' }], { duration: 420, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
+      if (this.reduce) return;
+      this.add(group, el.animate([
+        { objectPosition: '50% 0%' }, { objectPosition: '50% 0%', offset: 0.1 },
+        { objectPosition: '50% 100%', offset: 0.9 }, { objectPosition: '50% 100%' }
+      ], { duration: dur, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out' }));
+    };
+    return this.cache[k];
+  }
+  cycleRef(i, n) {
+    const k = 'c' + i + '-' + n;
+    if (!this.cache[k]) this.cache[k] = (el) => {
+      if (!el || el.__dg || this.reduce || !el.animate) return; el.__dg = 1;
+      const per = 2600, f = 0.18 / n;
+      el.style.opacity = '0';
+      this.add('cycle', el.animate([
+        { opacity: 0, offset: 0, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' }, { opacity: 1, offset: f }, { opacity: 1, offset: 1 / n, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' },
+        { opacity: 0, offset: Math.min(1, 1 / n + f) }, { opacity: 0, offset: 1 }
+      ], { duration: per * n, delay: i * per, iterations: Infinity, fill: 'both', easing: 'linear' }));
+    };
+    return this.cache[k];
+  }
+  flipRef() {
+    if (!this.cache.flip) this.cache.flip = (el) => {
+      if (!el || el.__dg || this.reduce || !el.animate) return; el.__dg = 1;
+      this.add('flip', el.animate([
+        { transform: 'rotateY(0deg)' }, { transform: 'rotateY(0deg)', offset: 0.38 },
+        { transform: 'rotateY(180deg)', offset: 0.5 }, { transform: 'rotateY(180deg)', offset: 0.88 },
+        { transform: 'rotateY(360deg)' }
+      ], { duration: 9000, iterations: Infinity, easing: 'cubic-bezier(0.77, 0, 0.175, 1)' }));
+    };
+    return this.cache.flip;
+  }
+  renderVals() {
+    const dark = this.state.dark, es = this.state.lang === 'es', L = (o) => (es ? o.es : o.en);
+    const t = dark ? {
+      bg: '#0C0C0E', bg2: '#131317', bgGlass: 'rgba(12,12,14,0.78)', glass: 'linear-gradient(135deg, rgba(48,48,56,0.62), rgba(24,24,30,0.42))', glassBorder: 'rgba(255,255,255,0.14)', glassHi: 'rgba(255,255,255,0.12)', card: '#17171C', stage: '#1A1A20', text: '#F5F5F0', muted: '#A9A9B3',
+      line: 'rgba(255,255,255,0.11)', gridLine: 'rgba(255,255,255,0.045)', gridGlow: 'rgba(112,214,190,0.55)', pillBg: '#1D1D23', accentText: '#C47DFF'
+    } : {
+      bg: '#F7F7F2', bg2: '#EEEEE7', bgGlass: 'rgba(247,247,242,0.82)', glass: 'linear-gradient(135deg, rgba(255,255,255,0.72), rgba(225,225,230,0.5))', glassBorder: 'rgba(255,255,255,0.7)', glassHi: 'rgba(255,255,255,0.9)', card: '#FFFFFF', stage: '#ECECE5', text: '#111114', muted: '#55555F',
+      line: 'rgba(17,17,20,0.11)', gridLine: 'rgba(110,90,255,0.08)', gridGlow: 'rgba(163,26,254,0.45)', pillBg: '#E9E9E2', accentText: '#7A12C9'
+    };
+    const c = es ? {
+      back: 'Volver al inicio', langLabel: 'Idioma', themeLabel: dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro', mockLabel: 'Mockup animado',
+      brandTitle: 'Sobre la marca', viewsLabel: 'Vistas del proyecto', videosTitle: 'Videos', campaignTitle: 'Campaña', workTitle: 'Qué hice', programsTitle: 'Programas', screensEyebrow: 'Pantallas', screensTitle: 'El proyecto completo', next: 'Siguiente proyecto'
+    } : {
+      back: 'Back to home', langLabel: 'Language', themeLabel: dark ? 'Switch to light mode' : 'Switch to dark mode', mockLabel: 'Animated mockup',
+      brandTitle: 'About the brand', viewsLabel: 'Project views', videosTitle: 'Videos', campaignTitle: 'Campaign', workTitle: 'What I did', programsTitle: 'Tools', screensEyebrow: 'Screens', screensTitle: 'The full project', next: 'Next project'
+    };
+    const PG = {
+      ai: { name: 'Illustrator', abbr: 'Ai', bg: '#E9E124', ink: '#111114' },
+      ps: { name: 'Photoshop', abbr: 'Ps', bg: '#29C0F7', ink: '#111114' },
+      fg: { name: 'Figma', abbr: 'Fg', bg: '#A31AFE', ink: '#FFFFFF' },
+      wp: { name: 'WordPress', abbr: 'W', bg: '#A31AFE', ink: '#FFFFFF' }
+    };
+    const scrollHint = { es: 'El mockup se desplaza solo · pasa el cursor para pausarlo', en: 'The mockup scrolls by itself · hover to pause it' };
+    const D = {
+      acsa: { name: 'ACSA', tag: 'UX/UI', kind: { es: 'Campaña + Landing pages', en: 'Campaign + Landing pages' }, accent: '#29C0F7', type: 'laptop', next: 'dbx',
+        logo: 'assets/36c94c6ee6ec05d8c38fb40e5b946dce.jpg', logoAlt: 'Logo Aseguradora ACSA',
+        tagline: { es: 'Campaña y landing pages de conversión para seguros: ACSACAR (auto) y ACSAMED (médico familiar).', en: 'Campaign and conversion landing pages for insurance: ACSACAR (car) and ACSAMED (family health).' },
+        brand: { es: 'Aseguradora ACSA ofrece seguros en El Salvador. ACSACAR es su seguro de auto “a tu medida” y ACSAMED su seguro médico familiar.', en: 'Aseguradora ACSA offers insurance in El Salvador. ACSACAR is its tailor-made car insurance and ACSAMED its family health insurance.' },
+        work: { es: 'Creé la campaña de ambos seguros, con artes madre y adaptaciones para feed y stories, y una landing por producto: hero con el mensaje principal, beneficios, pasos para cotizar, formulario, testimonios y preguntas frecuentes.', en: 'I created the campaign for both insurance products, with master artworks and feed and story adaptations, plus one landing page per product: hero with the key message, benefits, steps to get a quote, form, testimonials and FAQ.' },
+        campaignText: { es: 'Artes madre de ACSACAR y ACSAMED con sus adaptaciones para redes sociales: el concepto “a un clic” se mantiene en todas las piezas.', en: 'ACSACAR and ACSAMED master artworks with their social media adaptations: the “one click away” concept carries across every piece.' },
+        campaign: [['assets/3a3dd1f24a7ac2af28db744f4c7b0e94.jpg', 'ACSACAR · Post 1:1', '#E9E124'], ['assets/e62fc8f359e52400dafbbb18ca5e63e1.jpg', 'ACSACAR · Post 1:1', '#29C0F7'], ['assets/3c345714f3f7b184f0d8b5678d8ca53e.jpg', { es: 'ACSAMED · Arte madre', en: 'ACSAMED · Master artwork' }, '#70D6BE'], ['assets/81343b66e970475d9277996229c1da2f.jpg', { es: 'ACSAMED · Arte madre', en: 'ACSAMED · Master artwork' }, '#E9E124'], ['assets/080b7e6af78d352c3a2212e466eea0bf.jpg', 'ACSAMED · Story 9:16', '#29C0F7'], ['assets/4b289adb68d253b48c91a3a75f126524.jpg', 'ACSAMED · Story 9:16', '#A31AFE']],
+        programs: [],
+        laptops: [{ img: 'assets/7139e9e7b6697b4d51ea2851f1d9488e.jpg', cap: 'ACSACAR', dur: 16000 }, { img: 'assets/9306c683c43ecb9964ed9517c2f42573.jpg', cap: 'ACSAMED', dur: 18000 }],
+        pages: [] },
+      dbx: { name: 'DitoBanx · Key visuals', tag: { es: 'Diseño Digital', en: 'Digital Design' }, kind: { es: 'Campaña · Redes sociales', en: 'Campaign · Social media' }, accent: '#F99C0C', type: 'phones', next: 'dbxweb',
+        logo: 'assets/dfd268435acf63edf6cb9fb691d1c164.jpg', logoAlt: 'Logo DitoBanx',
+        tagline: { es: 'Key visuals y piezas para redes sociales de los servicios de la app DitoBanx.', en: 'Key visuals and social media pieces for the DitoBanx app services.' },
+        brand: { es: 'DitoBanx impulsa el cambio con servicios financieros innovadores para las nuevas generaciones de Latinoamérica.', en: 'DitoBanx drives change with innovative financial services for Latin America’s new generations.' },
+        work: { es: 'Creé los key visuals y sus adaptaciones para feed y stories: consulta médica online, multiasistencia y descarga de la app.', en: 'I created the key visuals and their feed and story adaptations: online medical consultation, multi-assistance and app download.' },
+        programs: [],
+        videos: [
+          { src: 'assets/60b3a0026495b6b85f6f35c582cfe57d.mp4', poster: 'assets/bd943f2d238085de15a7b7a7d508d1c0.jpg', ratio: '16 / 9', flex: '3 1 480px', max: '100%', shadow: '#E9E124', cap: { es: 'Video de la nueva wallet (16:9)', en: 'New wallet video (16:9)' } },
+          { src: 'assets/3bbc92a64af6b7ac1814285534742315.mp4', poster: 'assets/98a73c45fdc08498e4c25f6893339019.jpg', ratio: '9 / 16', flex: '1 1 220px', max: '300px', shadow: '#29C0F7', cap: { es: 'Video para stories (9:16)', en: 'Stories video (9:16)' } }
+        ],
+        cycle: ['assets/2964b3a246418bc2bb616080bf5af071.jpg', 'assets/34a22319a53abdf0fc9be93831cbbc59.jpg', 'assets/268fbc583a7c78522dc02f4a7b6136d6.jpg', 'assets/45fbb217918d7fddf40df4450de46eaa.jpg'],
+        pageRatio: '1 / 1', pageMin: '200px', chrome: false,
+        pages: [['assets/3970723be8187cedd2625f7f96551571.jpg', 'Post · Consulta médica'], ['assets/9ba2819d2bdd2d24ed65e661c149d86d.jpg', 'Post · Consulta médica'], ['assets/56b48f3a704e512ffaf608291fd13d1f.jpg', 'Post · Multiasistencia'], ['assets/96038462e0751e662c889db87d5de366.jpg', 'Post · Descarga la app']] },
+      dbxweb: { name: { es: 'DitoBanx · Sitio web', en: 'DitoBanx · Website' }, tag: 'UX/UI', kind: { es: 'Sitio web + Landing pages', en: 'Website + Landing pages' }, accent: '#F99C0C', type: 'laptop', next: 'chivo',
+        logo: 'assets/dfd268435acf63edf6cb9fb691d1c164.jpg', logoAlt: 'Logo DitoBanx',
+        tagline: { es: 'Refresh completo del sitio web y landings para sus tarjetas Mastercard.', en: 'Full website refresh and landing pages for its Mastercard cards.' },
+        brand: { es: 'DitoBanx impulsa el cambio con servicios financieros innovadores para las nuevas generaciones de Latinoamérica.', en: 'DitoBanx drives change with innovative financial services for Latin America’s new generations.' },
+        work: { es: 'Hice el refresh completo del sitio web de DitoBanx y diseñé dos landing pages de producto: la tarjeta prepago Mastercard y la tarjeta Global Mastercard para pagos en cualquier parte del mundo.', en: 'I did the full refresh of the DitoBanx website and designed two product landing pages: the Mastercard prepaid card and the Global Mastercard card for payments anywhere in the world.' },
+        programs: [],
+        laptops: [{ img: 'assets/38efb45c06e3852cf9a7c25326bedaeb.jpg', cap: { es: 'Sitio web · Inicio', en: 'Website · Home' }, dur: 20000 }, { img: 'assets/96e13b70fa2dd486ce1f75fad88dffba.jpg', cap: { es: 'Landing · Tarjeta Mastercard', en: 'Landing · Mastercard card' }, dur: 20000 }, { img: 'assets/43d7adbe7f862c7754d1acbd62d86797.jpg', cap: { es: 'Landing · Tarjeta Global Mastercard', en: 'Landing · Global Mastercard card' }, dur: 22000 }],
+        pageRatio: '4 / 3', pageMin: '300px', chrome: true,
+        pages: [['assets/9aec54cd1d71a9a02117535541158514.jpg', { es: 'Soluciones financieras', en: 'Financial solutions' }], ['assets/788d8249cc45051594cb92f31beea11f.jpg', { es: 'Tokenización', en: 'Tokenization' }], ['assets/6607c0d17a6ae07dbb155e5bec88c955.jpg', { es: 'El corazón de América', en: 'The heart of America' }]] },
+      chivo: { name: 'Qué Chivo Aquí', tag: 'UX/UI', kind: 'App', accent: '#29C0F7', type: 'phones', next: 'tarjeta',
+        logo: 'assets/de201cc6c79dd8ea21ec1b33c242df05.jpg', logoAlt: 'Logo Qué Chivo Aquí',
+        tagline: { es: 'App de turismo para explorar los destinos de El Salvador.', en: 'Tourism app to explore El Salvador’s destinations.' },
+        brand: { es: 'Qué Chivo Aquí es una aplicación de turismo que presenta la amplia variedad de destinos turísticos disponibles en El Salvador, para personas nacionales e internacionales.', en: 'Qué Chivo Aquí is a tourism app that showcases the wide variety of tourist destinations in El Salvador, for local and international visitors.' },
+        work: { es: 'Diseñé una interfaz accesible, clara y organizada: detalle de cada lugar turístico, horarios y destinos de los autobuses y un listado de contactos de emergencia.', en: 'I designed an accessible, clear and organized interface: details for each destination, bus schedules and routes, and a list of emergency contacts.' },
+        programs: ['ai', 'fg', 'ps'],
+        cycle: ['assets/1ccaf8e49a279279c8c0c9eee1637811.jpg', 'assets/faa7357e525dfd0fa33b00fe115c755a.jpg', 'assets/dc1152431ed8e3e95b3544d27c591713.jpg', 'assets/62fab75c20030f7dff574086d7e038d0.jpg', 'assets/3648be5f2f11ee1992ae5d3a5cef0a45.jpg', 'assets/fb10b821376d5cb57b1a2d799445cdd7.jpg', 'assets/c66467b128c8267d707a737b40e466dd.jpg', 'assets/abae8ee6665468563ff3f81f13360d1e.jpg'],
+        pageRatio: '390 / 844', pageMin: '150px', chrome: false,
+        pages: [['assets/1ccaf8e49a279279c8c0c9eee1637811.jpg', '01'], ['assets/faa7357e525dfd0fa33b00fe115c755a.jpg', '02'], ['assets/dc1152431ed8e3e95b3544d27c591713.jpg', '03'], ['assets/62fab75c20030f7dff574086d7e038d0.jpg', '04'], ['assets/3648be5f2f11ee1992ae5d3a5cef0a45.jpg', '05'], ['assets/fb10b821376d5cb57b1a2d799445cdd7.jpg', '06'], ['assets/c66467b128c8267d707a737b40e466dd.jpg', '07'], ['assets/abae8ee6665468563ff3f81f13360d1e.jpg', '08']] },
+      tarjeta: { name: { es: 'Tarjeta prepago DitoBanx', en: 'DitoBanx prepaid card' }, tag: { es: 'Diseño Digital', en: 'Digital Design' }, kind: { es: 'Empaque', en: 'Packaging' }, accent: '#A31AFE', type: 'flip', next: 'firma',
+        logo: 'assets/dfd268435acf63edf6cb9fb691d1c164.jpg', logoAlt: 'Logo DitoBanx',
+        tagline: { es: 'Empaque de la tarjeta prepago recargable “Sin fronteras”.', en: 'Packaging for the “Borderless” reloadable prepaid card.' },
+        brand: { es: 'DitoBanx impulsa el cambio con servicios financieros innovadores para las nuevas generaciones de Latinoamérica.', en: 'DitoBanx drives change with innovative financial services for Latin America’s new generations.' },
+        work: { es: 'Diseñé el empaque de la tarjeta prepago Mastercard: frente con los beneficios y reverso con las instrucciones de activación por código QR y WhatsApp.', en: 'I designed the Mastercard prepaid card packaging: benefits on the front and activation steps via QR code and WhatsApp on the back.' },
+        programs: [],
+        front: 'assets/e68322ef21aab4d5fcdd4c761f91ac35.jpg', back: 'assets/5f62ef2d9fa883b8c0e97909213902a2.jpg',
+        pageRatio: '16 / 9', pageMin: '300px', chrome: false,
+        pages: [['assets/e68322ef21aab4d5fcdd4c761f91ac35.jpg', { es: 'Frente', en: 'Front' }], ['assets/5f62ef2d9fa883b8c0e97909213902a2.jpg', { es: 'Reverso', en: 'Back' }]] },
+      firma: { name: 'Firma Electrónica', tag: 'UX/UI', kind: 'Web', accent: '#29C0F7', type: 'laptop', next: 'sis',
+        logo: 'assets/2dbb567a2024a562d761e3bde2fa1bf4.svg', logoAlt: 'Logo Firma Electrónica',
+        tagline: { es: 'Plataforma para firmar documentos electrónicos de forma fácil y segura.', en: 'Platform to sign electronic documents easily and securely.' },
+        brand: { es: 'Firma Electrónica permite digitalizar la firma manuscrita e incorporarla en todos tus documentos electrónicos de forma fácil y segura.', en: 'Firma Electrónica lets you digitize your handwritten signature and add it to all your electronic documents easily and securely.' },
+        work: { es: 'Diseñé la plataforma ligada a la identidad y a los objetivos del proyecto.', en: 'I designed the platform aligned with the project’s identity and goals.' },
+        programs: ['ai', 'fg', 'ps'],
+        laptops: [{ img: 'assets/c769d73a601dcc0a4029b5e1b6ef6834.jpg', cap: { es: 'Inicio', en: 'Home' }, dur: 9000 }],
+        pageRatio: '4 / 3', pageMin: '300px', chrome: true,
+        pages: [['assets/efb86192973d7f9486a8c9222d04a54a.jpg', '02'], ['assets/ee1345d0a69472747b4db314794c31f5.jpg', '03'], ['assets/be6043b4ae17f7db57079d134f2b6bc6.jpg', '04']] },
+      sis: { name: { es: 'SIS · Expediente médico', en: 'SIS · Medical records' }, tag: 'UX/UI', kind: { es: 'Plataforma', en: 'Platform' }, accent: '#70D6BE', type: 'laptop', next: 'esit',
+        logo: 'assets/380194064b4d65e71f78ca497ccba645.jpg', logoAlt: 'Logo SIS Sistema Integrado de Salud',
+        tagline: { es: 'Todo el historial clínico del usuario en una sola plataforma.', en: 'A user’s full medical history in a single platform.' },
+        brand: { es: 'SIS (Sistema Integrado de Salud) reúne el expediente médico del usuario: historial clínico, vacunas, pruebas de laboratorio, rayos X y control perinatal.', en: 'SIS (Integrated Health System) brings together a user’s medical record: clinical history, vaccines, lab tests, X-rays and perinatal care.' },
+        work: { es: 'Implementé un diseño moderno con una diagramación pensada para ordenar la gran cantidad de información de cada expediente.', en: 'I implemented a modern design with a layout built to organize the large amount of information in each record.' },
+        programs: ['ai', 'fg', 'ps'],
+        laptops: [{ img: 'assets/05eafb4e24ebbf282e86ce7111d5e86f.jpg', cap: { es: 'Expediente', en: 'Record' }, dur: 14000 }],
+        pageRatio: '4 / 3', pageMin: '300px', chrome: true,
+        pages: [['assets/5cc3426fa329125011d985e6ebe2a43d.jpg', { es: 'Acceso', en: 'Sign-in' }], ['assets/a5c342c6d05f525aa61e27acc39feac8.jpg', '03'], ['assets/f5538694cbc979b55da6549796403b5e.jpg', '04']] },
+      esit: { name: 'ESIT', tag: 'UX/UI', kind: 'Web', accent: '#29C0F7', type: 'laptop', next: 'sac',
+        logo: 'assets/4968310a3401c6852f197e9aa15d2db1.jpg', logoAlt: 'Logo ESIT',
+        tagline: { es: 'Sitio web de la Escuela Superior de Innovación y Tecnología.', en: 'Website for the Higher School of Innovation and Technology.' },
+        brand: { es: 'La ESIT es un instituto especializado de nivel superior, aprobado por el Ministerio de Educación, Ciencia y Tecnología, que forma profesionales salvadoreños para la industria digital y promueve la investigación y el emprendimiento.', en: 'ESIT is a specialized higher-education institute, approved by the Ministry of Education, Science and Technology, that trains Salvadoran professionals for the digital industry and promotes research and entrepreneurship.' },
+        work: { es: 'Creé un sitio web versátil, con recursos gráficos ligados al objetivo y a la identidad de la marca.', en: 'I created a versatile website, with graphic resources tied to the brand’s goal and identity.' },
+        programs: ['ai', 'fg', 'ps'],
+        laptops: [{ img: 'assets/ae58a4fffe06ee7bfb65d2442e381ae8.jpg', cap: { es: 'Inicio', en: 'Home' }, dur: 24000 }],
+        pageRatio: '4 / 3', pageMin: '260px', chrome: true,
+        pages: [['assets/52c29b8bd193d74462de0d0ba9e92f58.jpg', '02'], ['assets/877706f2499ed12bb326f00526a9b072.jpg', '03'], ['assets/a30191a5e0391567aef11c1c73812e9c.jpg', '04'], ['assets/ac7b06252a043e843d868a47535726e5.jpg', '05']] },
+      sac: { name: { es: 'Sistema de Atención Ciudadana', en: 'Citizen Service System' }, tag: 'UX/UI', kind: 'Web', accent: '#A31AFE', type: 'laptop', next: 'viajeros',
+        logo: 'assets/9a8c7fac299ff10e27bd01b2fb757f81.svg', logoAlt: 'Logo Sistema de Atención Ciudadana',
+        tagline: { es: 'Ingreso y seguimiento de casos en línea, desde cualquier dispositivo.', en: 'Online case submission and tracking, from any device.' },
+        brand: { es: 'El Sistema de Atención Ciudadana está disponible en línea y se puede usar desde cualquier dispositivo con conexión a internet.', en: 'The Citizen Service System is available online and can be used from any device with an internet connection.' },
+        work: { es: 'Diseñé la página de inicio: formulario para ingreso de casos, sección para publicar contenidos multimedia y números de contacto.', en: 'I designed the home page: a case submission form, a section for multimedia content and contact numbers.' },
+        programs: ['ai', 'fg', 'ps'],
+        laptops: [{ img: 'assets/eb5a5c0cbdc95d220e7a7d91e0af5a85.jpg', cap: { es: 'Inicio', en: 'Home' }, dur: 16000 }],
+        pageRatio: '4 / 3', pageMin: '300px', chrome: true,
+        pages: [['assets/867fbeac35a6829a1dc6aeafaa57c921.jpg', '02'], ['assets/dd6492ea1aab9b325f833d91ab903d77.jpg', '03']] },
+      viajeros: { name: 'ViajeroSV', tag: 'UX/UI', kind: 'Web', accent: '#29C0F7', type: 'laptop', next: 'nasakem',
+        logo: 'assets/499db45fa6c52518da48b6f9c0d83700.jpg', logoAlt: 'Logo ViajeroSV',
+        tagline: { es: 'Rediseño total de una plataforma de cupones turísticos.', en: 'Full redesign of a tourism coupon platform.' },
+        brand: { es: 'ViajeroSV promueve el turismo nacional con la diáspora salvadoreña a través de cupones promocionales en restaurantes, hoteles, tiendas y lugares turísticos.', en: 'ViajeroSV promotes national tourism among the Salvadoran diaspora through promotional coupons for restaurants, hotels, shops and tourist spots.' },
+        work: { es: 'Hice un rediseño total del sitio web para mejorar la UI y la UX, y que todos los usuarios tuvieran la mejor experiencia.', en: 'I fully redesigned the website to improve its UI and UX so every user gets the best experience.' },
+        programs: ['ai', 'fg', 'ps'],
+        laptops: [{ img: 'assets/201fa8d3ecc380a03463ef15dbf8b3b5.jpg', cap: { es: 'Inicio', en: 'Home' }, dur: 13000 }],
+        pageRatio: '4 / 3', pageMin: '260px', chrome: true,
+        pages: [['assets/ace90b12da7f89c1982cef40aaac2a7b.jpg', '02'], ['assets/e752c728eb789bece6c54a2c75eb2d93.jpg', '03'], ['assets/444f6677ae6df9a4258903da65b8ab1e.jpg', '04']] },
+      nasakem: { name: 'Nasakem', tag: 'UX/UI', kind: 'Landing page', accent: '#29C0F7', type: 'laptop', next: 'oxma',
+        logo: 'assets/c91b0d644187c2e89abc4d76cb046358.jpg', logoAlt: 'Logo Nasakem descongestivo nasal',
+        tagline: { es: 'Landing page con un nuevo key visual para un descongestivo nasal.', en: 'Landing page with a new key visual for a nasal decongestant.' },
+        brand: { es: 'Nasakem es el alivio de la congestión nasal producida por la gripe, el resfriado, el catarro estacional, la rinitis alérgica y la sinusitis.', en: 'Nasakem relieves nasal congestion caused by flu, colds, seasonal catarrh, allergic rhinitis and sinusitis.' },
+        work: { es: 'Para generar un mayor impacto en su público, renové el diseño de la landing page con un nuevo key visual, buscando un mejor posicionamiento del producto.', en: 'To make a bigger impact on its audience, I refreshed the landing page with a new key visual to strengthen the product’s positioning.' },
+        programs: ['ai', 'ps', 'wp'],
+        laptops: [{ img: 'assets/c56ff44dd7bf787ab78ead909aa894ff.jpg', cap: 'Landing page', dur: 14000 }],
+        pages: [] },
+      oxma: { name: 'OXMA', tag: 'UX/UI', kind: 'Landing page', accent: '#F99C0C', type: 'laptop', next: 'cadejo',
+        logo: 'assets/bf64cdc4579a7e08a577b33273542cca.jpg', logoAlt: 'Logo OXMA óxido de magnesio',
+        tagline: { es: 'Actualización de la landing page de un suplemento de magnesio.', en: 'Landing page update for a magnesium supplement.' },
+        brand: { es: 'OXMA es un suplemento de magnesio que ayuda a evitar la frecuencia de contracciones musculares (calambres).', en: 'OXMA is a magnesium supplement that helps reduce how often muscle cramps happen.' },
+        work: { es: 'Actualicé la landing page del producto: mejoré la visualización de las versiones anteriores y la experiencia UX/UI para convertir más visitantes en leads.', en: 'I updated the product landing page, improving on previous versions and the UX/UI to turn more visitors into leads.' },
+        programs: ['ai', 'ps', 'wp'],
+        laptops: [{ img: 'assets/ca7b7d89a349d55b21e5912626406fc5.jpg', cap: 'Landing page', dur: 16000 }],
+        pages: [] }
+    };
+    const names = { acsa: 'ACSA', dbx: 'DitoBanx · Key visuals', dbxweb: es ? 'DitoBanx · Sitio web' : 'DitoBanx · Website', chivo: 'Qué Chivo Aquí', tarjeta: es ? 'Tarjeta prepago DitoBanx' : 'DitoBanx prepaid card', firma: 'Firma Electrónica', sis: es ? 'SIS · Expediente médico' : 'SIS · Medical records', esit: 'ESIT', sac: es ? 'Sistema de Atención Ciudadana' : 'Citizen Service System', viajeros: 'ViajeroSV', nasakem: 'Nasakem', oxma: 'OXMA', cadejo: 'Token Cadejo' };
+    const files = { acsa: 'Acsa.dc.html', dbx: 'Dbx.dc.html', dbxweb: 'Dbxweb.dc.html', chivo: 'Chivo.dc.html', tarjeta: 'Tarjeta.dc.html', firma: 'Firma.dc.html', sis: 'Sis.dc.html', esit: 'Esit.dc.html', sac: 'Sac.dc.html', viajeros: 'Viajeros.dc.html', nasakem: 'Nasakem.dc.html', oxma: 'Oxma.dc.html', cadejo: 'Cadejo.dc.html' };
+    const id = D[this.props.pid] ? this.props.pid : 'acsa';
+    const d = D[id];
+    const T = (v) => (v && typeof v === 'object' && !Array.isArray(v) ? L(v) : v);
+    const shadows = ['#29C0F7', '#E9E124', '#70D6BE', '#A31AFE'];
+    const pages = (d.pages || []).map((pg, i) => {
+      const g = 'pg' + i;
+      return Object.assign({ img: pg[0], cap: T(pg[1]), ratio: d.pageRatio || '4 / 3', chrome: !!d.chrome, shadow: shadows[i % 4],
+        ref: d.chrome ? this.panRef(g, 12000 + i * 1500) : null }, d.chrome ? this.ctl(g) : { pause: null, play: null });
+    });
+    const lapSel = Math.min(this.state.lap || 0, Math.max(0, (d.laptops || []).length - 1));
+    const laptops = (d.laptops || []).map((l, i) => Object.assign({ img: l.img, cap: T(l.cap), ref: this.panRef('lap' + i, l.dur), on: i === lapSel,
+      tabBg: i === lapSel ? t.text : 'transparent', tabInk: i === lapSel ? t.bg : t.text, tabShadow: i === lapSel ? '0 2px 8px rgba(0,0,0,0.18)' : 'none',
+      pick: this.pickLap(i) }, this.ctl('lap' + i)));
+    const n = (d.cycle || []).length;
+    const cycle = (d.cycle || []).map((img, i) => ({ img, alt: d.name && typeof d.name === 'string' ? d.name + ' ' + (i + 1) : 'Pantalla ' + (i + 1), op: i === 0 ? 1 : 0, ref: this.cycleRef(i, n) }));
+    const isLaptop = d.type === 'laptop', isPhones = d.type === 'phones', isFlip = d.type === 'flip';
+    const p = {
+      name: T(d.name), tag: T(d.tag), kind: T(d.kind), accent: d.accent,
+      tagBg: d.tag === 'UX/UI' ? '#70D6BE' : '#E9E124', tagInk: '#111114',
+      tagline: L(d.tagline), brand: L(d.brand), work: L(d.work), logo: d.logo, logoAlt: d.logoAlt,
+      programs: (d.programs || []).map((k) => PG[k]), hasPrograms: (d.programs || []).length > 0,
+      isLaptop, isPhones, isFlip, laptops, cycle, multiLap: (d.laptops || []).length > 1,
+      front: d.front, back: d.back, frontAlt: es ? 'Frente del empaque' : 'Packaging front', backAlt: es ? 'Reverso del empaque' : 'Packaging back',
+      flipRef: isFlip ? this.flipRef() : null, flipPause: this.ctl('flip').pause, flipPlay: this.ctl('flip').play,
+      mockHint: isLaptop ? L(scrollHint) : isFlip ? (es ? 'El empaque gira solo · pasa el cursor para pausarlo' : 'The packaging turns by itself · hover to pause it') : (es ? 'Las pantallas cambian solas' : 'Screens change by themselves'),
+      campaign: (d.campaign || []).map((k) => ({ img: k[0], cap: T(k[1]), shadow: k[2] })), hasCampaign: (d.campaign || []).length > 0, campaignText: d.campaignText ? L(d.campaignText) : '',
+      videos: (d.videos || []).map((v) => Object.assign({}, v, { cap: L(v.cap) })), hasVideos: (d.videos || []).length > 0,
+      pages, hasPages: pages.length > 0, pageMin: d.pageMin || '300px',
+      nextHref: files[d.next], nextName: names[d.next]
+    };
+    return {
+      t, c, p, yes: true, videoRef: this.videoRef,
+      isDark: dark, isLight: !dark, isEs: es, isEn: !es,
+      esBg: es ? t.text : 'transparent', esColor: es ? t.bg : t.text,
+      enBg: !es ? t.text : 'transparent', enColor: !es ? t.bg : t.text,
+      setRoot: this.setRoot, onRootMove: this.onRootMove, toggleTheme: this.toggleTheme, setEs: this.setEs, setEn: this.setEn
+    };
+  }
+}
+</script>
+</body>
+</html>
